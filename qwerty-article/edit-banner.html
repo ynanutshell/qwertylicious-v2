@@ -1,0 +1,57 @@
+{{- $bannerURL := .Data "bannerUrl" -}}
+<div id="article-banner" 
+	class="flex-center pos-relative" 
+	style="background-image:url('{{$bannerURL}}');"
+	script="install DropToUpload">
+
+	{{- if isZero $bannerURL -}}
+		<div class="align-center">
+			<i class="ti ti-photo text-lg margin-none"></i>
+			<div class="text-lg bold margin-none">Banner</div>
+			<div class="align-center text-sm">
+				Click here to <u>upload an image or video</u><br>
+				or drag a file into this box.
+			</div>
+			<div class="text-lg">&nbsp;</div>
+		</div>
+	{{- else -}}
+		{{- template "head-banner" . -}}
+	{{- end -}}
+
+	<div
+		hx-get="/{{.StreamID}}/edit-banner" 
+		hx-target="#article-banner" 
+		hx-swap="outerHTML"
+		hx-trigger="refreshBanner from:window" 
+		hx-push-url="false">
+	</div>
+
+	<form
+		hx-post="/{{.StreamID}}/upload-banner" 
+		hx-encoding="multipart/form-data" 
+		hx-swap="none"
+		hx-push-url="false"
+		hx-trigger="change from:#banner-file">
+
+		<label id="banner-file-label" for="banner-file" class="clickable pos-absolute-four-corners">
+			<input id="banner-file" type="file" name="image" accept="image/*,video/*" hidden>
+		</label>
+	</form>
+
+	{{- if notZero $bannerURL -}}
+		<button hx-get="/{{.StreamID}}/delete-banner" class="pos-absolute-top-right button icon"><i class="ti ti-trash" ></i></button>
+	{{- end -}}
+
+</div>
+
+<style>
+	#article-banner {
+		min-height:240px;
+		background-size:cover;
+		background-position:top center;
+		
+		&.highlight {
+			outline: solid 2px var(--blue60);
+		}
+	}
+</style>

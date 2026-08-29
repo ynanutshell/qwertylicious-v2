@@ -1,0 +1,64 @@
+<div class="page padding editor-none h-entry">
+	<div id="menu-bar">
+		<div class="left">
+			<a class="button tertiary" href="/{{.StreamID}}"><span class="icon margin-right-xs"><i class="ti ti-chevron-left"></i></span><span>Back</span></a>
+		</div>
+		
+		<div class="center">
+			<a class="button" hx-get="/{{.StreamID}}/properties">Info</a>
+		</div>
+
+		<div class="right">
+			{{- if eq .StateID "published" -}}
+				<button hx-get="/{{.StreamID}}/unpublish" class="button success"><i class="ti ti-check"></i> Published</button>
+			{{- else -}}
+				<button hx-on:click="publish()" class="button action">Publish</button>
+			{{- end -}}
+			<div class="dropdown">
+				<a class="button icon margin-left-xs"><i class="ti ti-dots"></i></a>
+				<div class="dropdown-content">
+					<button class="dropdown-item" hx-on:click="save()"><i class="ti ti-device-floppy"></i> Save</button>
+					<button class="dropdown-item" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-x"></i> Discard</button>
+					{{- if .UserCan "delete" -}}
+						<a class="button dropdown-item text-red" hx-get="/{{.StreamID}}/delete"><i class="ti ti-trash"></i> Delete</a>
+					{{- end -}}
+				</div>
+			</div>
+			<button class="icon tertiary margin-left-xs" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-x"></i></button>
+		</div>
+	</div>
+
+	<article class="card border padding-none flex-column margin-bottom">
+		<div class="pos-relative">
+			{{- template "edit-banner" . -}}
+		</div>
+
+		<div class="pos-relative padding">
+			{{- template "head-summary" . -}}
+		</div>
+
+		<div class="padding">
+			{{- template "edit-content" . -}}
+		</div>
+
+		<div 
+			hx-get="/{{.StreamID}}/edit"
+			hx-trigger="refreshPage from:window"
+			hx-target="main"
+			hx-swap="innerHTML"
+			hx-push-url="false">
+		</div>
+	</article>
+
+	<div class="card padding border flex-row flex-align-center flex-justify-between">
+		<span class="medium margin-none">Visibility</span>
+		{{- if .Products.NotEmpty -}}
+			<a class="button" hx-get="/{{.StreamID}}/sharing"><i class="ti ti-lock"></i> Restricted</a>
+		{{- else -}}
+			<a class="button" hx-get="/{{.StreamID}}/sharing"><i class="ti ti-world"></i> Public</a>
+		{{- end -}}
+	</div>
+
+</div>
+
+<link rel="stylesheet" href="/.templates/qwerty-article/stylesheet" />

@@ -1,0 +1,56 @@
+{{- $url := index . 0 -}}
+{{- $selected := index . 1 -}}
+
+<div id="modal-header" class="turboclick" hx-target="#modal-window" hx-swap="innerHTML" hx-push-url="false">
+
+	<div>
+		<div class="flex-row text-xs">
+
+			<div class="flex-grow-1">
+				<span class="button-group">
+
+					{{- if eq "tree" $selected -}}
+						<button id="nestedButton" class="selected">
+							<i class="ti ti-list-nested-fill"></i> Nested
+						</button>
+					{{- else -}}
+						<button hx-get="/@me/newsfeed/browse-tree?url={{$url}}">
+							<i class="ti ti-list-nested"></i> Nested
+						</button>
+					{{- end -}}
+
+					{{- if eq "index" $selected -}}
+						<button hx-get="/@me/newsfeed/browse-index?url={{$url}}" class="selected">
+							<i class="ti ti-list-fill"></i> Index
+						</button>
+					{{- else -}}
+						<button hx-get="/@me/newsfeed/browse-index?url={{$url}}">
+							<i class="ti ti-list"></i> Index
+						</button>
+					{{- end -}}
+
+					{{- if eq "code" $selected -}}
+						<button hx-get="/@me/newsfeed/browse-code?url={{$url}}" class="selected">
+							<i class="ti ti-code-fill"></i> Code
+						</button>
+					{{- else -}}
+						<button hx-get="/@me/newsfeed/browse-code?url={{$url}}">
+							<i class="ti ti-code"></i> Code
+						</button>
+					{{- end -}}
+
+				</span>
+
+			</div>
+
+			<div>
+				<span class="button-group margin-none">	
+					<button script="on click send closeModal">Close</button>
+				</span>
+			</div>
+		
+		</div>
+
+	</div>
+
+</div>

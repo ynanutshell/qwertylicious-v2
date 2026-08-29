@@ -1,0 +1,80 @@
+{{- $isDesktop := .IsDesktop -}}
+
+<div class="app padding" script="init send SelectNav(id:'settings')">
+	<title>Social | Following ({{.FollowingCount}})</title>
+
+	{{- if $isDesktop -}}
+	<div id="app-sidebar" class="expanded">
+		{{- template "menu" "social" -}}
+	</div>
+	{{- end -}}
+	
+	<div class="app-content">
+
+		<div id="menu-bar">
+			{{ if not $isDesktop }}
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+			{{ end }}
+			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
+				<a href="/@me/settings/following" class="tab selected" hx-boost="true">Following</a>
+				<a href="/@me/settings/followers" class="tab" hx-boost="true">Followers</a>
+				<a href="/@me/settings/circles" class="tab" hx-boost="true">Circles</a>
+				<a href="/@me/settings/notifications" class="tab" hx-boost="true">Notifications</a>
+				<a href="/@me/settings/rules" class="tab" hx-boost="true">Rules</a>
+			</div>
+			<div class="right">
+				<a href="https://emissary.dev/following" target="_blank" class="link">
+					<i class="ti ti-help"></i>
+					{{ if $isDesktop }} Help {{ end }}
+				</a>
+			</div>
+		</div>
+
+		<div>
+			<input
+				type="text" 
+				name="search" 
+				placeholder="Search Following"
+				hx-get="/@me/settings/following-list"
+				hx-trigger="keyup queue:last delay:100ms"
+				hx-target="#following-list"
+				hx-swap="innerHTML"
+				hx-push-url="false">
+		</div>
+
+		<div class="table margin-top" style="border-bottom:none;">
+			<div class="link flex-row" role="button" hx-get="/@me/settings/following-search" hx-push-url="false">
+				<div class="flex-grow-1">
+					<i class="ti ti-plus"></i>
+					Follow Someone
+				</div>
+			</div>
+		</div>
+
+		<div id="following-list" class="table">
+			{{- .View "following-list" -}}
+		</div>
+				
+	</div>
+
+	<!-- Reload when refreshPage event is received -->
+	<div 
+		hx-get="{{.RelativeURL}}" 
+		hx-trigger="refreshPage from:window" 
+		hx-target="main"
+		hx-swap="innerHTML"
+		hx-push-url="false">
+	</div>
+
+	<!-- Reload when SSE message is received -->
+	<div hx-ext="sse" sse-connect="/@me/sse/following-updated">
+		<div
+			hx-get="{{.RelativeURL}}"
+			hx-trigger="sse:{{.AuthenticatedID.Hex}}"
+			hx-target="main"
+			hx-swap="innerHTML"
+			hx-push-url="false">
+		</div>
+	</div>
+
+</div>

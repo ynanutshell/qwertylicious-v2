@@ -1,0 +1,41 @@
+{{- $isMobile := .IsMobile -}}
+{{- $class := iif $isMobile "mobile" "desktop" -}}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{.DomainLabel}} - {{.PageTitle}}</title>
+	<link rel="webmention" href="/.webmention"/>
+	{{ template "includes-head" .}}
+</head>
+
+<body data-theme="neutral" hx-target="main" hx-swap="innerHTML transition:true show:window:top" hx-push-url="true" hx-ext="a11y" id="body" class="{{$class}}"
+	script="
+ 		install ToggleContainer
+		install SelectNav">
+
+	{{- if .IsMobile -}}
+
+		{{- template "navigation-mobile" . -}}
+
+		<main id="main">
+			{{- .GetContent -}}
+		</main>
+
+	{{- else -}}
+	
+		{{- template "navigation-desktop" . -}}
+
+		<main id="main">
+			{{- .GetContent -}}
+		</main>
+		
+	{{- end -}}
+	
+	<aside></aside>
+
+</body>
+
+{{ template "includes-foot" .}}
+
+</html>

@@ -1,0 +1,59 @@
+{{- $isDesktop := .IsDesktop -}}
+
+<div class="app padding" script="init send SelectNav(id:'settings')">
+	<title>Social | Followers ({{.FollowerCount}})</title>
+
+	{{- if $isDesktop -}}
+		<div id="app-sidebar" class="expanded">
+			{{- template "menu" "social" -}}
+		</div>
+	{{- end -}}
+	
+	<div class="app-content">
+
+		<div id="menu-bar">
+			{{ if not $isDesktop }}
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+			{{ end }}
+			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
+				<a href="/@me/settings/following" class="tab" hx-boost="true">Following</a>
+				<a href="/@me/settings/followers" class="tab selected" hx-boost="true">Followers</a>
+				<a href="/@me/settings/circles" class="tab" hx-boost="true">Circles</a>
+				<a href="/@me/settings/notifications" class="tab" hx-boost="true">Notifications</a>
+				<a href="/@me/settings/rules" class="tab" hx-boost="true">Rules</a>
+			</div>
+			<div class="right">
+				<a href="https://emissary.dev/followers" target="_blank" class="link">
+					<i class="ti ti-help"></i>
+					{{ if $isDesktop }} Help {{ end }}
+				</a>
+			</div>
+		</div>
+
+		<div>
+			<input
+				type="text" 
+				name="search" 
+				placeholder="Search Followers"
+				hx-get="/@me/settings/followers-list"
+				hx-trigger="keyup queue:last delay:100ms"
+				hx-target="#followers-list"
+				hx-swap="innerHTML"
+				hx-push-url="false">
+		</div>
+
+		<div id="followers-list" class="table margin-top">
+			{{.View "followers-list"}}
+		</div>
+
+	</div>
+
+	<div 
+		hx-get="{{.RelativeURL}}" 
+		hx-trigger="refreshPage from:window" 
+		hx-target="main" 
+		hx-swap="innerHTML" 
+		hx-push-url="false">
+	</div>
+
+</div>

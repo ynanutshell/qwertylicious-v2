@@ -1,0 +1,390 @@
+{
+	templateId: user-outbox
+	templateRole: user-outbox
+	category: Special
+	model: Outbox
+	label: Qwertylicious Profile
+	description:Profile displays everything about a user, including their inbox and outbox information
+	icon: inbox
+	extends: ["base-social", "base-intent"]
+  containedBy: []
+  tagPaths: ["statusMessage"]
+	tagUrl:"/search?q="
+	
+	bundles: {
+		stylesheet: {
+			content-type: "text/css"
+		}
+	}
+
+	schema: {
+		title: User Profile
+		type: object
+		properties: {
+			new_password: {type:"string"}
+			statusMessage: {type:"string"}
+			location: {type:"string"}
+			data: {
+				type: object
+				wildcard: string
+				properties: {
+					tags: {type:"string"}
+					background-body: {type:"string", format:"uri"}
+					layout: {type:"string"}
+					layout-highlight-first: {type:"boolean"}
+					stylesheet: {type:"string"}
+					color-button: {type:"string", format:"color"}
+				}
+			}
+		}
+	}
+
+	states: {
+		default: {
+			label: Default State,
+			description: This template does not use states
+		}
+		"WIZARD-STEP-1": {
+			label: Step 1 of 3
+		}
+		LIVE: {
+			label: Live
+			description: This template is visible to all viewers
+		}
+	}
+
+	datasets: {
+		fonts: [
+			{Label:"System Fonts", Value:"system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"}
+			{Label:"Open Sans", Value:"Open Sans"}
+			{Label:"Oxygen", Value:"Oxygen"}
+			{Label:"Fira Sans", Value:"Fira Sans"}
+			{Label:"Noto *", Value:"Noto *"}
+			{Label:"Baskerville", Value:"Baskerville"}
+			{Label:"Spectral", Value:"Spectral"}
+			{Label:"Newsreader", Value:"Newsreader"}
+			{Label:"Playfair Display", Value:"Playfair Display"}
+			{Label:"Cormorant *", Value:"Cormorant *"}
+			{Label:"Source Serif", Value:"Source Serif"}
+		]
+
+		layouts: [
+			{label:"1x Column", value:"column-1", icon:"view-stacked", description:"Large cards take up the full page width"}
+			{label:"2x Columns", value:"column-2", icon:"grid", description:"Medium cards are arranged in two columns"}
+			{label:"3x Columns", value:"column-3", icon:"grid-3x2-gap", description:"Small cards are arranged in three columns"}
+			{label:"Rows", value:"row", icon:"list-columns-reverse", description:"Cards with descriptions to the right side of the image"}
+			{label:"Rows Reversed", value:"row-reverse", icon:"list-columns", description:"Cards with descriptions to the left side of the image"}
+		]
+	}
+
+	tagPaths: ["data.tags"]
+
+	actions: {
+
+		about: {
+			roles: ["anonymous"]
+			steps:[
+				{do:"view-html"}
+			]
+		}
+
+		add: {
+			roles: ["self"]
+			steps: [
+				{
+					do: add-stream
+					style: inline
+					location: outbox
+					template: qwerty-article
+					title: + Add an Article
+					set-permissions: {copy:true, editor:["self"]}
+				}
+				{do: "save"}
+			]
+		}
+
+		checkout: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"if", condition:"{{gt 1 .ProductCount}}", 
+				then:[
+					{
+						do:"forward-to"
+						url:"/.checkout?productId={{.Products.First.ProductID.Hex}}&return={{.Permalink}}"
+						method:"get"
+					}
+				], 
+				else:[
+					{do:"as-modal", steps:[
+						{do:"view-html"}
+					]}
+				]}
+			]
+		}
+
+		create: {
+			roles: ["self"]
+			steps:[
+				{
+					do:"set-data", 
+					values:{}
+				}
+			]
+		}
+
+		delete-icon: {
+			roles: ["self"]
+			steps: [
+				{do:"delete-attachments", field:"iconId"}
+				{do:"save"}
+				{do:"search-index", if:"{{.IsIndexable}}"}
+			]
+		}
+
+		delete-image: {
+			roles: ["self"]
+			steps: [
+				{do:"delete-attachments", field:"imageId"}
+				{do:"save"}
+				{do:"search-index", if:"{{.IsIndexable}}"}
+			]
+		}
+
+		delete-background: {
+			roles: ["self"]
+			steps: [
+				{do:"set-data", values:{"data.background-body":""}}
+				{do:"delete-attachments", category:"body-background"}
+				{do:"save"}
+			]
+		}
+
+		edit: {
+			roles: ["self"]
+			steps: [
+				{do: "as-modal", background:"view", steps:[
+					{
+						do: "edit"
+						form:{
+							label: Edit Profile
+							type:layout-tabs
+							children: [
+								{
+									type: layout-vertical
+									label: Basics
+									children: [
+										{type:"text", path:"displayName", label:"Name", description:"Displayed wherever someone sees your profile. (PUBLIC)", options:{autocomplete:"off"}}
+										{type:"text", path:"location", label:"Location", description:"City, State, or whatever you want. (PUBLIC)"}
+									]
+								}
+								{
+									type: layout-vertical
+									label: About
+									children: [
+										{type:"textarea", path:"statusMessage", description:"Displayed on your 'About' page. Markdown is allowed. (PUBLIC)", options:{rows:8, showLimit:true}}
+										{type:"text", path:"data.tags", label:"Hashtags", description:"Enter #Hashtags separated by spaces.  (PUBLIC)"}
+									]
+								}
+								{
+									label: Images
+									type: layout-vertical
+									children: [
+										{type:"upload", path:"iconUrl", label:"Avatar Image", description:"Displayed next to your name as an icon. (PUBLIC)", options:{accept:"image/*", delete:"/@me/delete-icon"}}
+										{type:"upload", path:"imageUrl", label:"Banner Image", description:"Displays at the top of your profile page. (PUBLIC)", options:{accept:"image/*", delete:"/@me/delete-image"}}
+										{type:"html"}
+									]
+								}
+							]
+						}
+					}
+					{do:"upload-attachments", category:"icon", fieldname:"iconUrl", attachment-path:"iconId", rules:{width:400, height:400, types:["webp"]}}
+					{do:"upload-attachments", category:"image", fieldname:"imageUrl", attachment-path:"imageId", rules:{types:["webp"]}}
+					{do:"upload-attachments", category:"body-background", fieldname:"data.background-body", download-path:"data.background-body", rules:{types:["webp"]}}
+					{do:"save"}
+					{do:"set-password"}
+					{do:"search-index"}
+					{do:"refresh-page"}
+				]}
+			] 
+		}
+
+		edit-layout: {
+			roles: ["self"]
+			steps: [
+				{do: "as-modal", background:"view", steps:[
+					{
+						do: "edit"
+						form:{
+							label: Edit Layout
+							type:layout-vertical
+							children: [
+								{type:"radio-button-group", path:"data.layout", options:{provider:"qwerty-outbox.layouts"}}
+								//{type:"checkbox", path:"data.layout-highlight-first", label:"Expand the Top Item in the list"}
+							]
+						}
+					}
+					{do:"save"}
+					{do:"refresh-page"}
+				]}
+			]
+		}
+
+		edit-status: {
+			roles: ["self"]
+			steps: [
+				{do: "as-modal", background:"view", steps:[
+					{
+						do: "edit"
+						form:{
+							label: Edit Status Message
+							type: layout-vertical
+							children: [
+								{type:"textarea", path:"statusMessage", description:"Displayed on your profile page. Markdown is allowed. (PUBLIC)", options:{rows:8, showLimit:true}}
+							]
+						}
+					}
+					{do:"save"}
+					{do:"search-index"}
+					{do:"refresh-page"}
+				]}
+			] 
+		}
+
+		edit-banner: {
+			roles: ["self"]
+			steps: [
+				{do: "as-modal", background:"view", steps:[
+					{
+						do: "edit"
+						form:{
+							label: Edit Banner
+							description: Choose a color or an image to display a banner on your profile.  Leave empty and it will be hidden to visitors.
+							type:layout-vertical
+							children: [
+								{type:"colorpicker", path:"data.color-banner", label:"Background Color", description:"Displays underneath your banner image."}
+								{type:"upload", path:"imageUrl", label:"Banner Image", description:"Displays at the top of your profile page.", options:{accept:"image/*", delete:"/@me/delete-image"}}
+							]
+						}
+					}
+					{do:"upload-attachments", category:"image", fieldname:"imageUrl", attachment-path:"imageId", rules:{types:["webp"]}}
+					{do:"save"}
+					{do:"search-index", if:"{{.IsIndexable}}"}
+					{do:"refresh-page"}
+				]}
+			] 
+		}
+
+		follow: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"as-modal", steps:[
+					{do:"view-html"}
+				]}
+			]
+		}
+
+		header: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"view-html", file:"header"}
+			]
+		}
+
+		publish: {
+			roles: ["self"]
+			steps: [
+				{do:"as-modal", steps:[
+					{do:"edit", form:{
+						type:"layout-vertical"
+						label:"Publish Your Profile"
+						description:"This determines who can see your profile and interact with you online."
+						children:[
+							{type:"toggle", path:"isPublic", options:{text:"Make My Profile Public (visible to people)"}}
+							{type:"toggle", path:"isIndexable", options:{text:"Make My Profile Indexable (include in search results)"}}
+						]}
+					}
+				]}
+				{do:"save"}
+				{do:"search-index", if:"{{.IsIndexable}}"}
+				{do:"refresh-page"}
+			]
+		}
+
+		replies: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"view-html"}
+			]
+		}
+
+		replies-list: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"view-html"}
+			]
+		}
+
+		sort-featured: {
+			roles: ["self"]
+			steps: [
+				{do:"sort", model:"Stream", keys:"_id", values:"rank"}
+				{do:"set-header", name:"Hx-Push-Url", value:"false"}
+			]
+		}
+
+		sort-children: {
+			roles: ["self"]
+			steps: [
+				{do:"sort", model:"Stream", keys:"_id", values:"rankAlt"}
+			]
+		}
+
+		stylesheet: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"view-css"}
+			]
+		}
+
+		subscribe: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"as-modal", background:"view", steps:[
+					{do:"view-html"}
+				]}
+			]
+		}
+
+		view: {
+			roles: ["anonymous"]
+			steps: [
+				{do:"view-html", file:"outbox"}
+			]
+		}
+
+		wizard-1: {
+			roles: ["self"]
+			steps: [
+				{
+					do:edit
+					form: {
+						type:layout-vertical
+						children: [
+							{type:"text", path:"displayName", label:"Your Name", description:"Displayed publicly. The name you want to be known by.", options:{autocomplete:"name", required:true}}
+							{type:"text", path:"username", label:"Username", description:"Displayed publicly. How others will find you online.", options:{autocomplete:"username", required:true}}
+							{type:"password", path:"new_password", label:"Choose Your Password", description:"At least 8 characters. Please use a Password Manager.", options:{autocomplete:"new-password", minLength:8, required:true}}
+							{type:"upload", path:"iconUrl", label:"Avatar Image", description:"Displayed publicly next to your name, often on other websites, too.", options:{accept:"image/*"}}
+						]
+					}
+					options: ["endpoint:/@{{.UserID}}/wizard-1", "submit-label:Continue >>", "cancel-button:hide"]
+				},
+				{do:"upload-attachments", category:"icon", fieldname:"iconUrl", attachment-path:"iconId", rules:{width:400, height:400, types:["webp"]}}
+				{do:"set-state", state:"LIVE"}
+				{do:"set-password"}
+				{do:"save"}
+				{do:"set-header", name:"HX-Refresh", value:"true"}
+			]
+		}
+
+	}
+}

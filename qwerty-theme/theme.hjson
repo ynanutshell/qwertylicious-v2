@@ -1,0 +1,44 @@
+{
+	themeId: qwerty-v2-theme
+	extends:["global"]
+	isVisible:true
+	category: General
+	label: Qwertylicious V2
+	description: Modern theme to emphasize long-form text content.
+	rank: 0
+	schema: {
+		type: object
+		properties: {
+			iconId: {type:"string", format:"objectId"}
+			iconUrl: {type:"string", format:"url"}
+			label: {type:"string", maxLength:100, required: true}
+			description: {type:"string", maxLength:100}
+			themeId: {type:"string", maxLength: 100}
+			registrationId: {type:"string", maxLength: 100}
+		}
+	}
+	form: {
+		type: layout-vertical
+		children: [
+			{type: "text", label: "Website Name", path: "label", description: "Title of this website and domain."}
+			{type: "upload", label: "Icon", path: "iconUrl", description: "Icon for this website. Must be square. Often cropped to be a circle.", options:{accept:"image/*", delete:"/admin/domain/delete-icon"}}
+			{type: "upload", label: "Image", path: "imageUrl", description: "Image to display on signin pages and emails. Roughly 16:9 works best.", options:{accept:"image/*", delete:"/admin/domain/delete-image"}}
+			{type: "textarea", label: "Description", path: "description", options:{rows:5}}
+		]
+	}
+	bundles: {
+		stylesheet: {
+			content-type:"text/css"
+		}
+	}
+	startupStreams: [
+		{templateId:"article-editorjs", token:"home", label:"Home", rank:1}
+	]
+	startupGroups:[
+	]
+	defaultFolders: [
+		{label:"Family"}
+		{label:"Friends"}
+		{label:"Followers"}
+	]
+}

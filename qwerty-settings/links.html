@@ -1,0 +1,51 @@
+{{- $isDesktop := .IsDesktop -}}
+
+<div class="app padding" script="init send SelectNav(id:'settings')">
+	<title>Profile | Links</title>
+
+	{{- if $isDesktop -}}
+		<div id="app-sidebar" class="expanded">
+			{{- template "menu" "general" -}}
+		</div>
+	{{- end -}}
+	
+	<div class="app-content">
+
+		<div id="menu-bar">
+			{{ if not $isDesktop }}
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+			{{ end }}
+			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
+				<a href="/@me/settings/general" class="turboclick tab" hx-boost="true">General</a>
+				<a href="/@me/settings/images" class="turboclick tab" hx-boost="true">Images</a>
+				<a href="/@me/settings/links" class="turboclick tab selected" hx-boost="true">Links</a>
+				<a href="/@me/settings/import" class="turboclick tab" hx-boost="true">Import</a>
+				<a href="/@me/settings/export" class="turboclick tab" hx-boost="true">Export</a>
+			</div>
+			<div class="right">
+				<a href="https://emissary.dev/user-profile" target="_blank" class="link">
+					<i class="ti ti-help"></i>
+					{{ if $isDesktop }} Help {{ end }}
+				</a>
+			</div>
+		</div>
+
+		<div class="card padding transition-main-card">
+
+			<div class="margin-bottom">
+				Links display on your profile as 
+				<b>rel="me" links</b> that help verify your ownership of related pages.<br>
+				Enter <i>up to six</i> other web addresses that point to your other
+				home pages on the Internet.
+			</div>
+
+			<div
+				hx-get="/@me/settings/links-form"
+				hx-trigger="load"
+				hx-target="this"
+				hx-swap="outerHTML"
+				hx-push-url="false">
+			</div>
+		</div>
+	</div>
+</div>

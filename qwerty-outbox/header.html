@@ -1,0 +1,122 @@
+{{- $isMyself := .IsMyself -}}
+{{- $showAlbums := eq "true" (.Data "show-albums") -}}
+{{- $showEvents := eq "true" (.Data "show-events") -}}
+{{- $showNews := eq "true" (.Data "show-news") -}}
+{{- $showShop := ne "" (.Data "shop-url") -}}
+{{- $hasBannerImage := ne "" .ImageURL -}}
+{{- $hasBannerColor := ne "" (.Data "color-banner") -}}
+{{- $circleCount := .Circles.Featured.Count -}}
+{{- $layout := .Data "layout" -}}
+{{- $isPublic := .IsPublic -}}
+
+<!--style>{{- template "stylesheet" . -}}</style-->
+
+<div id="profile-card" class="pos-relative">
+	<!-- Banner Image -->
+	{{- if or $hasBannerImage $hasBannerColor $isMyself -}}
+		<div id="profile-banner" class="pos-relative hide sm:show">
+			<!-- <img src="{{.ImageURL}}" class="width-100%" style="aspect-ratio: 3/1"> -->
+			<img src="https://placehold.co/600x400.png" class="width-100%">
+		</div>
+	{{- end -}}
+
+	<!-- Author Name -->
+	<div class="padding flex-row flex-align-center">
+		<div class="align-center margin-right-sm">
+			<!-- <img id="profile-icon" src="{{.IconURL}}" class="width-96" aria-hidden="true"> -->
+			<img id="profile-icon" src="https://placehold.co/400x400.png" class="width-96" aria-hidden="true">
+		</div>
+		<div>
+			<h1 id="profile-name" class="text-2xl bold margin-none align-left">{{.DisplayName}}</h1>
+			<div class="margin-vertical sm:margin-none align-left">
+				<div id="profile-username" class="text-gray margin-right-sm nowrap" script="install Clipboard">
+					<span class="clipboard-text" hidden>@{{.Username}}@{{.Hostname}}</span>
+					<span class="clickable clipboard-copy-button">
+						<span>@{{.Username}}</span>
+						<span class="text-xs"><i class="ti ti-copy"></i></span>
+					</span>
+					<span class="clipboard-copy-feedback" style="display:none;">
+						<span>@{{.Username}}</span>
+						<span class="text-xs text-green"><i class="ti ti-check"></i> Copied to clipboard</span>
+					</span>
+				</div>
+
+				<div class="text-gray nowrap">
+					{{- if ne "" .Location }}
+						<span id="profile-location"> <i class="ti ti-map-pin"></i> {{.Location}}</span>
+					{{- end -}}
+
+					{{- if .Links.NotEmpty -}}
+						<span id="profile-links">
+							{{- range  $index, $link := .Links }}									
+								<span aria-hidden="true">&middot;</span>
+								<a href="{{$link.ProfileURL}}" rel="me" target="_blank">{{$link.Name}}</a>
+							{{- end -}}
+						</span>
+					{{- end -}}
+				</div>
+			</div>
+
+		</div>
+		<div class="margin-top-lg md:margin-none align-center md:align-left">
+
+			<div class="nowrap" script="on load trigger storage on window">
+				<div class="margin-none">
+
+					{{- if $isMyself -}}
+						<div class="pos-absolute-top-right flex-row text-sm">
+							<button hx-post="/@{{.UserID}}/add" class="primary">+ New Post</button>
+							<button hx-get="/@me/edit-layout">
+								{{- if eq $layout "column-1" -}}
+									<i class="ti ti-columns-1"></i> 1 Column Layout
+								{{- else if eq $layout "column-2" -}}
+									<i class="ti ti-columns-2"></i> 2 Columns Layout
+								{{- else if eq $layout "column-3" -}}
+									<i class="ti ti-columns-3"></i> 3 Columns Layout
+								{{- else if eq $layout "row-reverse" -}}
+									<i class="ti ti-layout-rows"></i> Rows Reversed Layout
+								{{- else -}}
+									<i class="ti ti-layout-rows"></i> Rows Layout
+								{{- end -}}
+							</button>
+							<button hx-get="/@me/settings"><i class="ti ti-settings"></i> Edit Profile</button>
+							<button hx-post="/signout"><i class="ti ti-logout"></i> Sign Out</button>
+
+						</div>
+					{{- else -}}
+
+						<!--
+						{{- if .IsAuthenticated -}}
+							{{- $following := .AmFollowing .Permalink -}}
+							{{- if $following.IsNew -}}
+								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary"><i class="ti ti-fediverse"></i> Follow for Updates</button>
+							{{- else -}}
+								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary"><i class="ti ti-check"></i> Following</button>
+							{{- end -}}
+						{{- else -}}
+						{{- end -}}
+						{{- if not .IsAuthenticated -}}
+							<div class="margin-top-sm text-xs text-light-gray">
+								<span hx-get="/@{{.UserID}}/intent" class="clickable intentMarker-account">&nbsp;</span>
+							</div>
+						{{- end -}}
+						-->
+
+						<!--button hx-get="/@{{.UserID}}/intent?intent=follow&object={{.Permalink}}" class="primary"-->
+						<button hx-get="/@{{.UserID}}/follow" class="primary">
+							⁂ Follow
+						</button>
+
+						{{- if gt $circleCount 0 -}}
+							<button hx-get="/@{{.UserID}}/subscribe" class="primary">
+								Subscribe
+							</button>
+						{{- end -}}
+
+					{{- end -}}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

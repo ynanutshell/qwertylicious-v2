@@ -1,0 +1,51 @@
+<div class="page padding">
+	{{- $breadcrumbs := .Breadcrumbs -}}
+	<div id="menu-bar">
+
+		<div class="left">
+			<button class="button tertiary" script="on click saveDraft(false)"><span class="icon margin-right-xs"><i class="ti ti-chevron-left"></i></span><span>Back</span></button>
+		</div>
+
+		<div class="center tabs">
+			{{- if .UserCan "edit" -}}
+				<a class="tab bold" href="/{{.StreamID}}/edit">Edit</a>
+			{{- end -}}
+
+			{{- if .UserCan "widgets" -}}
+				<a class="tab" href="/{{.StreamID}}/widgets">Widgets</a>
+			{{- end -}}
+
+			{{- if .UserCan "children" -}}
+				<a class="tab" href="/{{.StreamID}}/children">Children</a>
+			{{- end -}}
+
+			{{- if .UserCan "properties" -}}
+				<a class="tab" hx-get="/{{.StreamID}}/properties">Info</a>
+			{{- end -}}
+
+			{{- if .UserCan "sharing" -}}
+				<a class="tab" hx-get="/{{.StreamID}}/sharing">Sharing</a>
+			{{- end -}}
+		</div>
+
+		<div class="right">
+			<button script="on click saveDraft(true)" class="button action margin-right-xs">Publish</button>
+			<div class="dropdown">
+				<a class="button icon"><i class="ti ti-dots"></i></a>
+				<div class="dropdown-content">
+					<button class="dropdown-item" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-x"></i> Cancel</button>
+					{{- if .UserCan "delete" -}}
+						<a hx-get="/{{.StreamID}}/delete" class="dropdown-item text-red"><i class="ti ti-trash"></i> Delete</a>
+					{{- end -}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div>
+		{{template "editor" . }}
+	</div>
+</div>
+
+<link rel="stylesheet" href="/.templates/article-base/stylesheet" />
