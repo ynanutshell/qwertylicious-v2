@@ -1,5 +1,5 @@
 {
-	themeId: qwerty-v2-theme
+	themeId: qwerty-theme
 	extends:["global"]
 	isVisible:true
 	category: General
