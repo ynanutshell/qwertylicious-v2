@@ -1,28 +1,39 @@
 {{- $isDesktop := .IsDesktop -}}
 {{- $circles := .Circles.ByName.Slice -}}
 
-<div class="app padding" script="init send SelectNav(id:'settings')">
+<div class="app" script="init send SelectNav(id:'settings')">
 	<title>Social | Circles ({{$circles.Length}})</title>
 
-	{{- if $isDesktop -}}
-		<div id="app-sidebar" class="expanded">
-			{{- template "menu" "social" -}}
-		</div>
-	{{- end -}}
+	<div id="app-sidebar" class="flex-column flex-justify-between{{if $isDesktop}} expanded{{else}} collapsed{{end}}">
+		{{- template "menu" "social" -}}
+	</div>
 	
-	<div class="app-content">
+	<div class="app-content padding transition-main-card">
 
 		<div id="menu-bar">
-			{{ if not $isDesktop }}
+			<!-- {{ if not $isDesktop }}
 				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+			{{ end }} -->
+			{{ if $isDesktop }}
+				<div class="left tabs">
+					<a href="/@me/settings/following" class="turboclick tab" hx-boost="true">Following</a>
+					<a href="/@me/settings/followers" class="turboclick tab" hx-boost="true">Followers</a>
+					<a href="/@me/settings/circles" class="turboclick tab selected" hx-boost="true">Circles</a>
+					<a href="/@me/settings/notifications" class="turboclick tab" hx-boost="true">Notifications</a>
+					<a href="/@me/settings/rules" class="turboclick tab" hx-boost="true">Rules</a>
+				</div>
+			{{ else }}
+				<div class="dropdown">
+					<a class="button">Circles <i class="ti ti-chevron-down"></i></a>
+					<div class="dropdown-content left">
+						<a href="/@me/settings/following" class="turboclick dropdown-item" hx-boost="true">Following</a>
+						<a href="/@me/settings/followers" class="turboclick dropdown-item" hx-boost="true">Followers</a>
+						<a href="/@me/settings/circles" class="turboclick dropdown-item selected" hx-boost="true">Circles</a>
+						<a href="/@me/settings/notifications" class="turboclick dropdown-item" hx-boost="true">Notifications</a>
+						<a href="/@me/settings/rules" class="turboclick dropdown-item" hx-boost="true">Rules</a>
+					</div>
+				</div>
 			{{ end }}
-			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
-				<a href="/@me/settings/following" class="tab" hx-boost="true">Following</a>
-				<a href="/@me/settings/followers" class="tab" hx-boost="true">Followers</a>
-				<a href="/@me/settings/circles" class="tab selected" hx-boost="true">Circles</a>
-				<a href="/@me/settings/notifications" class="tab" hx-boost="true">Notifications</a>
-				<a href="/@me/settings/rules" class="tab" hx-boost="true">Rules</a>
-			</div>
 			<div class="right">
 				<a href="https://emissary.dev/circles" target="_blank" class="link">
 					<i class="ti ti-help"></i>

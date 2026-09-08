@@ -6,22 +6,24 @@ button, .button,
 #menu-bar button, #menu-bar .button,
 .text-xs button, .text-xs .button,
 .text-sm button, .text-sm .button {
+	margin-right: unset;
 	padding: calc(var(--rhythm) * 1.25) calc(var(--rhythm) * 1.625);
 	border-radius: calc(var(--rhythm) * 4);
 	background-color: var(--button-background);
 	color: var(--button-color);
 
 	i.ti {
-		color: var(--gray50);
+		color: var(--text-color-tertiary);
 	}
 
 	&.icon {
 		padding: calc(var(--rhythm) * 1.25);
 		align-content: center;
+		text-align: center;
 		aspect-ratio: 1/1;
 
 		i {
-			color: var(--gray50);
+			color: var(--text-color-tertiary);
 		}
 	}
 
@@ -58,7 +60,7 @@ button, .button,
 		color: var(--button-secondary-color);
 
 		i.ti {
-			color: var(--gray50);
+			color: var(--text-color-tertiary);
 		}
 
 		&:hover, &.icon:hover {
@@ -71,7 +73,7 @@ button, .button,
 	}
 
 	i.ti {
-		color: var(--gray50);
+		color: var(--text-color-tertiary);
 	}
 
 	&:hover, &.icon:hover {
@@ -133,7 +135,7 @@ input[disabled]:hover,
 button[disabled]:hover,
 .button[disabled]:hover {
 	background-color: var(--gray10);
-	color: var(--gray50);
+	color: var(--text-color-tertiary);
 	cursor: default;
 }
 

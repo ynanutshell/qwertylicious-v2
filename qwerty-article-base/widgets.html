@@ -1,4 +1,4 @@
-<div class="page padding">
+<div class="page framed">
 
 	{{- $breadcrumbs := .Breadcrumbs -}}
 	<script type="text/hyperscript">
@@ -24,26 +24,29 @@
 			<button class="button tertiary" script="on click saveDraft(false)"><span class="icon margin-right-xs"><i class="ti ti-chevron-left"></i></span><span>Back</span></button>
 		</div>
 
-		<div class="center tabs">
-			{{- if .UserCan "edit" -}}
-				<a class="tab" href="/{{.StreamID}}/edit">Edit</a>
-			{{- end -}}
+		<div class="center dropdown">
+			<a class="button">Widgets</a>
+			<div class="dropdown-content center pos-fixed">
+				{{- if .UserCan "edit" -}}
+					<a class="dropdown-item" href="/{{.StreamID}}/edit">Edit</a>
+				{{- end -}}
 
-			{{- if .UserCan "widgets" -}}
-				<a class="tab bold" href="/{{.StreamID}}/widgets">Widgets</a>
-			{{- end -}}
+				{{- if .UserCan "widgets" -}}
+					<a class="dropdown-item selected" href="/{{.StreamID}}/widgets">Widgets</a>
+				{{- end -}}
 
-			{{- if .UserCan "children" -}}
-				<a class="tab" href="/{{.StreamID}}/children">Children</a>
-			{{- end -}}
+				{{- if .UserCan "children" -}}
+					<a class="dropdown-item" href="/{{.StreamID}}/children">Children</a>
+				{{- end -}}
 
-			{{- if .UserCan "properties" -}}
-				<a class="tab" hx-get="/{{.StreamID}}/properties">Info</a>
-			{{- end -}}
+				{{- if .UserCan "properties" -}}
+					<a class="dropdown-item" hx-get="/{{.StreamID}}/properties">Info</a>
+				{{- end -}}
 
-			{{- if .UserCan "sharing" -}}
-				<a class="tab" hx-get="/{{.StreamID}}/sharing">Sharing</a>
-			{{- end -}}
+				{{- if .UserCan "sharing" -}}
+					<a class="dropdown-item" hx-get="/{{.StreamID}}/sharing">Sharing</a>
+				{{- end -}}
+			</div>
 		</div>
 
 		<div class="right">

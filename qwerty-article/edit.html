@@ -1,7 +1,7 @@
-<div class="page padding editor-none h-entry">
+<div class="page framed editor-none h-entry">
 	<div id="menu-bar">
 		<div class="left">
-			<a class="button tertiary" href="/{{.StreamID}}"><span class="icon margin-right-xs"><i class="ti ti-chevron-left"></i></span><span>Back</span></a>
+			<button class="tertiary" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-chevron-left margin-right-xs"></i><span>Back</span></button>
 		</div>
 		
 		<div class="center">
@@ -24,7 +24,6 @@
 					{{- end -}}
 				</div>
 			</div>
-			<button class="icon tertiary margin-left-xs" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-x"></i></button>
 		</div>
 	</div>
 

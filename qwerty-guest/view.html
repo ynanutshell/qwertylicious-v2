@@ -3,30 +3,33 @@
 {{- $hasWebfingerUsername := .HasWebfingerUsername -}}
 {{- $webfingerUsername := .WebfingerUsername -}}
 
-<div class="app padding" script="init send SelectNav(id:'settings')">
+<div class="app" script="init send SelectNav(id:'settings')">
 
-	{{- if and $isDesktop .IsAuthenticated -}}
-		<div id="app-sidebar" class="expanded">
-			<a href="/@me/settings/general" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-general;"><i class="ti ti-settings"></i> Profile</a>
-			<a href="/@me/settings/visibility" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-security;"><i class="ti ti-shield"></i> Security</a>
-			<a href="/@me/settings/following" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-following;"><i class="ti ti-users-group"></i> Social</a>
-			<a href="/@me/settings/payments" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-payments;"><i class="ti ti-credit-card"></i> Payments</a>
-			<a href="/@guest" class="turboclick menu-item ellipsis selected" style="view-transition-name:nav-guest;"><i class="ti ti-user"></i> Guest Profile</a>
-			<br>
-			<a hx-post="/signout" class="menu-item ellipsis"><i class="ti ti-logout"></i> Sign Out</a>
+	{{- if .IsAuthenticated -}}
+		<div id="app-sidebar" class="flex-column flex-justify-between{{if $isDesktop}} expanded{{else}} collapsed{{end}}">
+			<div class="top">
+				<a href="/@me/settings/general" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-general;"><i class="ti ti-settings"></i><span class="label"> Profile</span></a>
+				<a href="/@me/settings/visibility" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-security;"><i class="ti ti-shield"></i><span class="label"> Security</span></a>
+				<a href="/@me/settings/following" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-following;"><i class="ti ti-users-group"></i><span class="label"> Social</span></a>
+				<a href="/@me/settings/payments" hx-boost="true" class="turboclick menu-item ellipsis" style="view-transition-name:nav-payments;"><i class="ti ti-credit-card"></i><span class="label"> Payments</span></a>
+				<a href="/@guest" class="turboclick menu-item ellipsis selected" style="view-transition-name:nav-guest;"><i class="ti ti-user"></i><span class="label"> Guest Profile</span></a>
+			</div>
+			<div class="bottom">
+				<a hx-post="/signout" class="menu-item ellipsis"><i class="ti ti-logout"></i><span class="label"> Sign Out</span></a>
+			</div>
 		</div>
 	{{- end -}}
 
-	<div class="app-content">
-		<h1 class="flex-row text-xl margin-top margin-bottom-sm">
-			{{- if not $isDesktop -}}
+	<div class="app-content padding transition-main-card">
+		<h1 class="flex-row text-xl margin-none margin-bottom-sm">
+			<!-- {{- if not $isDesktop -}}
 				<a class="button icon" href="/@me/settings/mobile"><i class="ti ti-back"></i></a>
-			{{- end -}}
+			{{- end -}} -->
 			<span class="flex-grow bold">Guest Profile</span>
 		</h1>
 
 		{{- if not $hasWebfingerUsername -}}
-			<div class="card padding max-width-640 margin-bottom-lg">
+			<div class="card padding max-width-640 margin-bottom">
 				<div class="text-blue text-lg bold margin-top-none">One More Step To Go ⁂</div>
 				<div class="margin-vertical-sm margin-bottom">
 					You must connect a Fediverse username in order to access your purchases
@@ -98,12 +101,12 @@
 		</div>
 
 		{{- if $privileges.IsEmpty -}}
-			<h1 class="text-xl bold margin-top-lg">No Purchases</h1>
+			<h1 class="text-lg bold margin-top-lg">No Purchases</h1>
 			You haven't made any purchases on this server.
 		{{- else -}}
 
 			{{- $privilegedStreams := .PrivilegedStreams $privileges -}}
-			<h1 class="text-xl bold margin-top-lg">My Purchases</h1>
+			<h1 class="text-lg bold margin-top-lg">My Purchases</h1>
 
 			<div class="card max-width-640 padding">
 

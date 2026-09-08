@@ -1,21 +1,31 @@
 {{- $isMobile := .IsMobile -}}
 {{- $isDesktop := not $isMobile -}}
-{{- $folders := .FoldersWithSelection "FOLDER" }}
-{{- $folder := $folders.Selected -}}
-{{- $filter := .FilteredByFollowing -}}
 
+{{- $folders := .FoldersWithSelection "FOLDER" -}}
+{{- $folder := $folders.Selected -}}
 {{- $folderID := $folder.FolderID.Hex -}}
+
+{{- $filter := .FilteredByFollowing -}}
 {{- $followingID := .QueryParam "origin.followingId" -}}
 
-<div class="page padding framed" script="init send SelectNav(id:'inbox')">
+{{- $layout := "sidebar" -}}
+
+<!-- Navigation Option A: Sidebar -->
+{{- if eq $layout "sidebar" -}}
+	{{- template "newsfeed-sidebar" . -}}
+{{- end -}}
+
+<div class='page{{if ne $layout "sidebar"}} framed {{else}} flex-row flex-justify-center{{end}}' script="init send SelectNav(id:'inbox')">
 
 	<link rel="stylesheet" href="/.templates/user-inbox/stylesheet">
 
 	<!-- Main Content -->
-	<div class="content">
+	<div class='content{{if eq $layout "sidebar"}} framed{{end}}'>
 
-		<!-- Menu Bar -->
-		{{- template "newsfeed-menubar" . -}}
+		<!-- Navigation Option B: Menu Bar -->
+		{{- if ne $layout "sidebar" -}}
+			{{- template "newsfeed-menubar" . -}}
+		{{- end -}}
 	
 		<div class="flex-row margin-bottom-sm">
 
@@ -55,7 +65,7 @@
 			{{- end -}}
 
 			{{- $selectedFolder := ne $folderID nilObjectID.Hex -}}
-			<div class="{{if $isDesktop}}text-sm{{end}}" style="display: flex">
+			<div class="{{if $isDesktop}}text-sm{{end}} flex-row">
 				{{- if $selectedFolder -}}
 					{{- if $filter.IsZero -}}
 						<button hx-get="/@me/newsfeed/filter?folderId={{$folderID}}" class="icon button turboclick"><i class="ti ti-filter"></i></button>

@@ -16,8 +16,9 @@
 
 .framed {
 	position: relative;
-	width:100%;
-	margin:0px;
+	width: 100%;
+	height: min-content;
+	margin: 0px;
 }
 
 article.content {
@@ -45,26 +46,25 @@ article.content {
 	margin:0px;
 }
 
-
-@media screen and (min-width:640px) {
-	
-}
-
-@media screen and (min-width:768px) {
-
-}
-
 /** LARGE Screens (tablet/horizontal) ******/
 @media screen and (min-width:1024px) {
 
 	.page {
-		height: fit-content;
 		width: 100%;
-		max-width: 720px;
+		max-width: unset;
+		height: fit-content;
 		padding: calc(var(--rhythm) * 2);
 	}
 
 	.framed {
 		max-width: 720px;
+	}
+}
+
+/** SMALL Screens (mobile/vertical) ******/
+
+@media screen and (max-width: 768px) {
+	article.content {
+		padding: calc(var(--rhythm) * 2);
 	}
 }
