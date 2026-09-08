@@ -4,7 +4,7 @@
 	--page-border: var(--gray20);
 
 	--input-border: var(--gray30);
-	--input-background: var(--gray05);
+	--input-background: var(--gray03);
 	--input-color: var(--gray60);
 
 	--input-border-invalid: var(--red40);
@@ -30,7 +30,7 @@
 
 	--button-secondary-color: var(--black);
 	--button-secondary-background: var(--gray-01);
-	--button-secondary-background-hover: color-mix(in srgb, var(---button-primary-background), black 4%);
+	--button-secondary-background-hover: color-mix(in srgb, var(---button-secondary-background), black 4%);
 
 	--button-tertiary-color: var(--black);
 	--button-tertiary-background: unset;
@@ -38,6 +38,9 @@
 	
 	--heading-color: var(--black);
 	--text-color: var(--gray80);
+	--text-color-secondary: var(--gray60);
+	--text-color-tertiary: var(--gray50);
+	
 	--grid-highlight-background: var(--blue20);
 
 	--border-radius: calc(var(--rhythm) * 2);
@@ -49,7 +52,7 @@
 
 /* Cool Colors */
 
-body[data-theme="slate"] {
+:root[data-theme="slate"] {
 	--white: #ffffff;
 	--gray00: #ffffff;
 	--gray01: #fefefe;
@@ -73,7 +76,7 @@ body[data-theme="slate"] {
 
 /* Neutral Colors */
 
-body[data-theme="neutral"] {
+:root[data-theme="neutral"] {
 	--white: #ffffff;
 	--gray00: #ffffff;
 	--gray01: #fefefe;
@@ -97,7 +100,7 @@ body[data-theme="neutral"] {
 
 /* Warm Colors */
 
-body[data-theme="stone"] {
+:root[data-theme="stone"] {
 	--white: #ffffff;
 	--gray00: #ffffff;
 	--gray01: #fefefe;
@@ -124,8 +127,11 @@ body[data-theme="stone"] {
 @media (prefers-color-scheme: dark) {
 
 	:root {
-		--page-border: var(--gray10);
-		--input-border: var(--gray20);
+		--body-background: var(--gray01);
+		--page-background: var(--gray02);
+		--page-border: var(--gray03);
+
+		--input-border: var(--gray03);
 
 		--input-border-invalid: var(--red40);
 		--input-background-invalid: var(--red20);
@@ -136,7 +142,7 @@ body[data-theme="stone"] {
 		--focus-color: var(--link-color);
 
 		--button-color: var(--black);
-		--button-background: var(--gray05);
+		--button-background: var(--gray02);
 		--button-background-hover: color-mix(in srgb, var(--button-background), black 4%);
 
 		--button-action-color: var(--white);
@@ -156,12 +162,12 @@ body[data-theme="stone"] {
 		--button-tertiary-background: unset;
 		--button-tertiary-background-hover: var(--gray01);
 
-		--heading-color: var(--black);
-		--text-color: var(--gray80);
-		--grid-highlight-background:var(--blue20);
+		--text-color: var(--gray90);
+		--text-color-secondary: var(--gray20);
+		--text-color-tertiary: var(--gray10);
 	}
 
-	body[data-theme="slate"] {
+	:root[data-theme="slate"] {
 		--white: #020617;
 		--gray00: #020617;
 		--gray01: #0f172a;
@@ -183,7 +189,7 @@ body[data-theme="stone"] {
 		--black: #ffffff;
 	}
 
-	body[data-theme="neutral"] {
+	:root[data-theme="neutral"] {
 		--white: #0a0a0a;
 		--gray00: #0a0a0a;
 		--gray01: #171717;
@@ -205,29 +211,7 @@ body[data-theme="stone"] {
 		--black: #ffffff;
 	}
 
-	body[data-theme="stone"] {
-		--white: #ffffff;
-		--gray00: #ffffff;
-		--gray01: #fefefe;
-		--gray02: #fdfdfd;
-		--gray03: #fcfcfc;
-		--gray04: #fbfbfb;
-		--gray05: #fafafa;
-		--gray10: #f5f5f4;
-		--gray15: #eaeaea;
-		--gray20: #e7e5e4;
-		--gray30: #d6d3d1;
-		--gray40: #a8a29e;
-		--gray50: #78716c;
-		--gray60: #57534e;
-		--gray70: #44403c;
-		--gray80: #292524;
-		--gray90: #1c1917;
-		--gray100: #0c0a09;
-		--black: #0c0a09;
-	}
-
-	body[data-theme="stone"] {
+	:root[data-theme="stone"] {
 		--white: #0c0a09;
 		--gray00: #0c0a09;
 		--gray01: #1c1917;
