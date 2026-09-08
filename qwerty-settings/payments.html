@@ -2,15 +2,20 @@
 {{- $isMobile := not $isDesktop -}}
 {{- $merchantAccounts := .MerchantAccounts.Slice -}}
 
-<div class="app padding" script="init send SelectNav(id:'settings')">
+<div class="app" script="init send SelectNav(id:'settings')">
 	<title>Payments</title>
-	{{- if $isDesktop -}}
+	
+	<!-- {{- if $isDesktop -}}
 		<div id="app-sidebar" class="expanded">
 			{{- template "menu" "payments" -}}	
 		</div>
-	{{- end -}}
+	{{- end -}} -->
+
+	<div id="app-sidebar" class="flex-column flex-justify-between{{if $isDesktop}} expanded{{else}} collapsed{{end}}">
+		{{- template "menu" "payments" -}}
+	</div>
 	
-	<div class="app-content">
+	<div class="app-content padding transition-main-card flex-justify-center">
 
 		{{- if $merchantAccounts.IsEmpty -}}
 
@@ -23,9 +28,9 @@
 						Payments Not Available
 					</h1>
 				{{- else -}}
-					<div class="flex-row text-xl bold margin-none margin-bottom-lg">
-						<a href="/@me/settings/mobile"><i class="ti ti-back"></i></a>
-						<div class="bold flex-grow">Payments Not Available</div>
+					<div class="flex-row text-xl bold margin-none">
+						<!-- <a href="/@me/settings/mobile"><i class="ti ti-back"></i></a> -->
+						<div class="bold margin-none flex-grow">Payments Not Available</div>
 					</div>
 				{{- end -}}
 				

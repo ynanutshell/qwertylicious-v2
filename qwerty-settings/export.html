@@ -1,28 +1,39 @@
 {{- $isDesktop := .IsDesktop -}}
 {{- $oauthUserTokens := .OAuthUserTokensForExports -}}
 
-<div class="app padding" script="init send SelectNav(id:'settings')">
+<div class="app" script="init send SelectNav(id:'settings')">
 	<title>Profile | Export</title>
 
-	{{- if $isDesktop -}}
-		<div id="app-sidebar" class="expanded">
-			{{- template "menu" "general" -}}
-		</div>
-	{{- end -}}
+	<div id="app-sidebar" class="flex-column flex-justify-between{{if $isDesktop}} expanded{{else}} collapsed{{end}}">
+		{{- template "menu" "general" -}}
+	</div>
 	
-	<div class="app-content">
+	<div class="app-content padding transition-main-card flex-justify-center">
 
 		<div id="menu-bar">
-			{{ if not $isDesktop }}
+			<!-- {{ if not $isDesktop }}
 				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+			{{ end }} -->
+			{{ if $isDesktop }}
+				<div class="left tabs">
+					<a href="/@me/settings/general" class="turboclick tab" hx-boost="true">General</a>
+					<a href="/@me/settings/images" class="turboclick tab" hx-boost="true">Images</a>
+					<a href="/@me/settings/links" class="turboclick tab" hx-boost="true">Links</a>
+					<a href="/@me/settings/import" class="turboclick tab" hx-boost="true">Import</a>
+					<a href="/@me/settings/export" class="turboclick tab selected" hx-boost="true">Export</a>
+				</div>
+			{{ else }}
+				<div class="dropdown">
+					<a class="button">Export <i class="ti ti-chevron-down"></i></a>
+					<div class="dropdown-content left">
+						<a href="/@me/settings/general" class="turboclick dropdown-item" hx-boost="true">General</a>
+						<a href="/@me/settings/images" class="turboclick dropdown-item" hx-boost="true">Images</a>
+						<a href="/@me/settings/links" class="turboclick dropdown-item" hx-boost="true">Links</a>
+						<a href="/@me/settings/import" class="turboclick dropdown-item" hx-boost="true">Import</a>
+						<a href="/@me/settings/export" class="turboclick dropdown-item selected" hx-boost="true">Export</a>
+					</div>
+				</div>
 			{{ end }}
-			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
-				<a href="/@me/settings/general" class="turboclick tab" hx-boost="true">General</a>
-				<a href="/@me/settings/images" class="turboclick tab" hx-boost="true">Images</a>
-				<a href="/@me/settings/links" class="turboclick tab" hx-boost="true">Links</a>
-				<a href="/@me/settings/import" class="turboclick tab" hx-boost="true">Import</a>
-				<a href="/@me/settings/export" class="turboclick tab selected" hx-boost="true">Export</a>
-			</div>
 			<div class="right">
 				<a href="https://emissary.dev/migration" target="_blank" class="link">
 					<i class="ti ti-help"></i>
@@ -50,7 +61,7 @@
 
 		{{- if $oauthUserTokens.IsEmpty -}}
 
-			<div class="card padding transition-main-card">
+			<div class="card border padding">
 				<div class="text-lg bold"><i class="ti ti-database-up"></i> Export to Other Servers</div>
 
 				<div>

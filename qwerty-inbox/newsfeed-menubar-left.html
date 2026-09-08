@@ -1,18 +1,15 @@
 {{- /* newsfeed-menu.html renders the News Feed folder list: the "all folders" entry, the
-       sortable per-folder links, and "Add a Folder".  The dot (".") is a FolderList (via
-       .FoldersWithSelection "FOLDER").  Rendered inside newsfeed-sidebar.html on desktop,
-       and full-page by mobile.html.  Notifications live in their own template now (see
-       the user-notifications template and the global nav item in theme-default/navigation.html). */ -}}
+	sortable per-folder links, and "Add a Folder".  The dot (".") is a FolderList (via
+	.FoldersWithSelection "FOLDER").  Rendered inside newsfeed-menu.html on desktop,
+	and full-page by mobile.html.  Notifications live in their own template now (see
+	the user-notifications template and the global nav item in theme-default/navigation.html). */ -}}
+
 {{- $selectedID := .SelectedID -}}
 {{- $allFolders := $selectedID.IsZero -}}
 
-<a href="/@me/newsfeed/feed" class="tab turboclick {{if $allFolders}}selected{{end}}">
-	<span>All</span>
-</a>
-
 <div class="dropdown">
-	<a class="tab tertiary turboclick {{if not $allFolders}}selected{{end}}">
-		{{- $selectedLabel := "More" -}}
+	<a class="button turboclick">
+		{{- $selectedLabel := "All" -}}
 		{{- if not $allFolders -}}
 			{{- range .Folders -}}
 				{{- if eq $selectedID .FolderID -}}
@@ -21,16 +18,19 @@
 				{{- end -}}
 			{{- end -}}
 		{{else}}
-		More 
+		All 
 		{{- end -}}
 		<i class="ti ti-chevron-down margin-left-xs"></i>
 	</a>
 	<form class="dropdown-content left sortable" hx-post="/@me/newsfeed/folder-sort" hx-push-url="false" hx-trigger="end" hx-swap="none">
+		<a href="/@me/newsfeed/feed" class="dropdown-item turboclick {{if $allFolders}}selected{{end}}">
+			<span>All</span>
+		</a>
 		{{- range .Folders -}}
 			{{- $folderID := .FolderID.Hex -}}
-			<a href="/@me/newsfeed/folder?folderId={{$folderID}}" class="dropdown-item turboclick ellipsis hover-trigger">
+			<a href="/@me/newsfeed/folder?folderId={{$folderID}}" class="dropdown-item turboclick {{if eq $selectedID .FolderID}}selected{{end}} ellipsis hover-trigger">
 				<span class="flex-grow">{{.Label}}</span>
-				<!-- <span class="flex-shrink folder-handle">
+				<span class="flex-shrink folder-handle">
 					{{- if ne 0 .UnreadCount -}}
 						<span id="folder-unread-{{$folderID}}"
 						class="text-sm text-light-gray hover-hide">&#9679;</span>
@@ -38,15 +38,14 @@
 					<span class="hover-show">
 						<i class="ti ti-drag-handle"></i>
 					</span>
-				</span> -->
+				</span>
 				<input type="hidden" name="keys" value="{{$folderID}}">
 			</a>
 		{{- end -}}
+		<a hx-get="/@me/newsfeed/folder-add" class="dropdown-item turboclick">
+			<span><i class="ti ti-plus"></i> New Folder</span>
+		</a>
 	</form>
-</div>
-
-<div role="button" hx-get="/@me/newsfeed/folder-add" class="icon button primary turboclick">
-	<span style="view-transition-name:app-sidebar-add-folder-icon;"><i class="ti ti-plus"></i></span>
 </div>
 
 <script>

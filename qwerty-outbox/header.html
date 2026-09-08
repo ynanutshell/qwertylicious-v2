@@ -9,24 +9,25 @@
 {{- $layout := .Data "layout" -}}
 {{- $isPublic := .IsPublic -}}
 
+{{- $isMobile := .IsMobile -}}
+{{- $isDesktop := not $isMobile -}}
+
 <!--style>{{- template "stylesheet" . -}}</style-->
 
 <div id="profile-card" class="pos-relative">
 	<!-- Banner Image -->
 	{{- if or $hasBannerImage $hasBannerColor $isMyself -}}
 		<div id="profile-banner" class="pos-relative hide sm:show">
-			<!-- <img src="{{.ImageURL}}" class="width-100%" style="aspect-ratio: 3/1"> -->
-			<img src="https://placehold.co/600x400.png" class="width-100%">
+			<img src="{{.ImageURL}}" class="width-100%">
 		</div>
 	{{- end -}}
 
 	<!-- Author Name -->
-	<div class="padding flex-row flex-align-center">
-		<div class="align-center margin-right-sm">
-			<!-- <img id="profile-icon" src="{{.IconURL}}" class="width-96" aria-hidden="true"> -->
-			<img id="profile-icon" src="https://placehold.co/400x400.png" class="width-96" aria-hidden="true">
+	<div class="padding flex-row flex-align-start pos-relative">
+		<div class="width-128 height-100 margin-right-sm">
+			<img id="profile-icon" src="{{.IconURL}}" class="width-100%" aria-hidden="true">
 		</div>
-		<div>
+		<div class="width-100%">
 			<h1 id="profile-name" class="text-2xl bold margin-none align-left">{{.DisplayName}}</h1>
 			<div class="margin-vertical sm:margin-none align-left">
 				<div id="profile-username" class="text-gray margin-right-sm nowrap" script="install Clipboard">
@@ -58,30 +59,31 @@
 			</div>
 
 		</div>
-		<div class="margin-top-lg md:margin-none align-center md:align-left">
+		<div>
 
 			<div class="nowrap" script="on load trigger storage on window">
-				<div class="margin-none">
-
+				<div class="flex-row margin-none">
+					<button hx-post="/@{{.UserID}}/add" class="action{{if $isMobile}} icon{{end}}"><i class="ti ti-plus"></i>{{if $isDesktop}} New Post{{end}}</button>
 					{{- if $isMyself -}}
-						<div class="pos-absolute-top-right flex-row text-sm">
-							<button hx-post="/@{{.UserID}}/add" class="primary">+ New Post</button>
-							<button hx-get="/@me/edit-layout">
-								{{- if eq $layout "column-1" -}}
-									<i class="ti ti-columns-1"></i> 1 Column Layout
-								{{- else if eq $layout "column-2" -}}
-									<i class="ti ti-columns-2"></i> 2 Columns Layout
-								{{- else if eq $layout "column-3" -}}
-									<i class="ti ti-columns-3"></i> 3 Columns Layout
-								{{- else if eq $layout "row-reverse" -}}
-									<i class="ti ti-layout-rows"></i> Rows Reversed Layout
-								{{- else -}}
-									<i class="ti ti-layout-rows"></i> Rows Layout
-								{{- end -}}
-							</button>
-							<button hx-get="/@me/settings"><i class="ti ti-settings"></i> Edit Profile</button>
-							<button hx-post="/signout"><i class="ti ti-logout"></i> Sign Out</button>
-
+						<div class="dropdown">
+							<a class="button icon"><i class="ti ti-dots"></i></a>
+							<div class="dropdown-content fixed" style="{{if $isMobile}}right: calc(var(--rhythm) * 4){{end}}">
+								<button class="dropdown-item" hx-get="/@me/edit-layout">
+									{{- if eq $layout "column-1" -}}
+										<i class="ti ti-columns-1"></i> 1 Column Layout
+									{{- else if eq $layout "column-2" -}}
+										<i class="ti ti-columns-2"></i> 2 Columns Layout
+									{{- else if eq $layout "column-3" -}}
+										<i class="ti ti-columns-3"></i> 3 Columns Layout
+									{{- else if eq $layout "row-reverse" -}}
+										<i class="ti ti-layout-rows"></i> Rows Reversed Layout
+									{{- else -}}
+										<i class="ti ti-layout-rows"></i> Rows Layout
+									{{- end -}}
+								</button>
+								<button class="dropdown-item" hx-get="/@me/settings"><i class="ti ti-settings"></i> Edit Profile</button>
+								<button class="dropdown-item text-red" hx-post="/signout"><i class="ti ti-logout"></i> Sign Out</button>
+							</div>
 						</div>
 					{{- else -}}
 
@@ -104,7 +106,7 @@
 
 						<!--button hx-get="/@{{.UserID}}/intent?intent=follow&object={{.Permalink}}" class="primary"-->
 						<button hx-get="/@{{.UserID}}/follow" class="primary">
-							⁂ Follow
+							Follow
 						</button>
 
 						{{- if gt $circleCount 0 -}}

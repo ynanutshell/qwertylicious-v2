@@ -1,4 +1,4 @@
-nav {
+nav.desktop, nav.mobile {
 	display: flex;
   justify-content: space-between;
   min-height: 100dvh;
@@ -9,9 +9,9 @@ nav {
 	color: var(--black);
 
 	&.mobile {
-		position: relative;
 		min-height: unset;
-		border-bottom: 1px solid var(--page-border);
+		height: unset;
+		padding: unset;
 	}
 
 	@media screen and (width >= 640px) {
@@ -21,12 +21,53 @@ nav {
 	}
 }
 
+nav.collapsed {
+	min-width: 0;
+
+	.nav-item {
+		aspect-ratio: 1/1;
+		
+		.label {
+			display: none;
+		}
+	}
+}
+
+#topbar {
+	display: flex;
+	position: relative;
+	padding: var(--rhythm);
+	border-bottom: 1px solid var(--page-border);
+
+	.nav-item {
+		aspect-ratio: 1/1;
+		padding: var(--rhythm);
+	}
+}
+
+#topbar-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: absolute;
+	min-width: 240px;
+	height: 100dvh;
+	z-index: 100;
+	padding: calc(var(--rhythm) * 2);
+	border-right: 1px solid var(--page-border);
+	background-color: var(--body-background);
+
+	.nav-item {
+		padding: calc(var(--rhythm) * 1.2) calc(var(--rhythm) * 1.6);
+	}
+}
+
 .nav-item {
 	display: flex;
   flex-direction: row;
   gap: var(--rhythm);
   margin: unset;
-	padding: var(--rhythm) calc(var(--rhythm) * 2);
+	padding: calc(var(--rhythm) * 1.2) calc(var(--rhythm) * 2);
 	color:var(--gray90);
 	background-color: unset;
 	font-size: calc(var(--rhythm) * 2);
@@ -35,7 +76,7 @@ nav {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 
-  + .nav-item {
+  + .nav-item:not(.ToggleHide) {
     margin-top: var(--rhythm);
   }
   
@@ -67,7 +108,7 @@ nav {
 		font-size: calc(var(--rhythm) * 2.25);
 
 		i.ti {
-			color: var(--gray50);
+			color: var(--text-color-tertiary);
 			font-size: calc(var(--rhythm) * 2.25);
 		}
 	}

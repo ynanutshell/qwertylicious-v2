@@ -3,22 +3,17 @@
 {{- $members := .CircleMembers.Slice -}}
 {{- $icon := concat $circle.Icon "-fill" -}}
 
-<div class="app padding" script="init send SelectNav(id:'settings')">
+<div class="app" script="init send SelectNav(id:'settings')">
 	<title> {{.Name}} | Circles</title>
 
-	{{- if $isDesktop -}}
-		<div id="app-sidebar" class="expanded">
-			{{- template "menu" "social" -}}
-		</div>
-	{{- end -}}
+	<div id="app-sidebar" class="flex-column flex-justify-between{{if $isDesktop}} expanded{{else}} collapsed{{end}}">
+		{{- template "menu" "social" -}}
+	</div>
 
-	<div class="app-content">
+	<div class="app-content padding transition-main-card">
 
 		<div id="menu-bar">
-			{{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
-			{{ end }}
-			<div class="{{ if not $isDesktop }}center{{else}}left{{end}} tabs">
+			<div class=" tabs">
 				<a href="/@me/settings/following" hx-boost="true">Following</a>
 				<a href="/@me/settings/followers" hx-boost="true">Followers</a>
 				<a href="/@me/settings/circles" class="selected" hx-boost="true">Circles</a>

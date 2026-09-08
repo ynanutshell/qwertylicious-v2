@@ -1,6 +1,6 @@
 {{- $q := .QueryParam "q" -}}
 
-<nav id="sidebar" class="flex-column margin-bottom" hx-push-url="true" hx-swap="transition:true">
+<nav class="desktop collapsed flex-column margin-bottom" hx-push-url="true" hx-swap="transition:true">
 	<div class="top">
 		{{- range .Navigation -}}
 			<a href="/{{.Token}}" id="nav-{{.StreamID}}" class="nav-item turboclick" aria-label="{{.Label}}">

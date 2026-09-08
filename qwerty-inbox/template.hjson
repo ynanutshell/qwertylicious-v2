@@ -552,7 +552,7 @@
 
 		// Standalone News Feed sidebar fragment, re-fetched on refreshSidebar
 		// (?folderId= keeps the selected folder).
-		newsfeed-sidebar: {
+		newsfeed-menu: {
 			roles: ["self"]
 			steps:[
 				{do:"set-header", name:"Cache-Control", value:"no-store"}

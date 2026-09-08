@@ -1,18 +1,17 @@
-{{- /*
-	newsfeed-sidebar.html is the desktop sidebar for the News Feed section.  The dot (".") is the
-	Inbox builder; it computes the FolderList itself (via .FoldersWithSelection) so the fragment
-	can be re-fetched standalone via the "newsfeed-sidebar" action.
+{{- /* newsfeed-menu.html renders the News Feed folder list: the "all folders" entry, the
+	sortable per-folder links, and "Add a Folder".  The dot (".") is a FolderList (via
+	.FoldersWithSelection "FOLDER").  Rendered inside newsfeed-menu.html on desktop,
+	and full-page by mobile.html.  Notifications live in their own template now (see
+	the user-notifications template and the global nav item in theme-default/navigation.html). */ -}}
 
-	The "refreshSidebar" event — fired by message-read and scroll-read — re-fetches this
-	fragment so the folder unread dots stay current without a reload.
-*/ -}}
 {{- $folders := .FoldersWithSelection "FOLDER" -}}
 
-<div id="menu-bar" class="expanded"
-	hx-get="/@me/newsfeed/newsfeed-sidebar?folderId={{$folders.SelectedID.Hex}}"
-	hx-trigger="refreshSidebar from:window"
-	hx-swap="outerHTML"
-	hx-push-url="false">
-	<div class="left tabs">{{- template "newsfeed-menu-left" $folders -}}</div>
-	<div class="right">{{- template "newsfeed-menu-right" -}}</div>
+<div id="menu-bar" 
+    class="expanded"
+    hx-get="/@me/newsfeed/newsfeed-menu?folderId={{$folders.SelectedID.Hex}}"
+    hx-trigger="from:window"
+    hx-swap="outerHTML"
+    hx-push-url="false">
+    <div class="left">{{- template "newsfeed-menubar-left" $folders -}}</div>
+    <div class="right">{{- template "newsfeed-menubar-right" -}}</div>
 </div>
