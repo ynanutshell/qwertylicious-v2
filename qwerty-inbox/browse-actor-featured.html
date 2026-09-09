@@ -2,7 +2,7 @@
 {{- if ne "" $collection -}}
 	{{- $collection := .ActivityStream $collection -}}
 	{{- if $collection.Items.NotEmpty -}}
-		<div class="margin-top bold"><i class="ti ti-pin-fill"></i> Featured Posts</div>
+		<div class="margin-top bold">{{icon "pin-fill"}} Featured Posts</div>
 		{{- range $index, $item := $collection.Items.RangeWithIndex -}}
 			<div class="card padding margin-top" script="install blockselect(link:#featured-{{$index}})">
 

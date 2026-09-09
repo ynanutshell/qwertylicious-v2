@@ -1,7 +1,7 @@
 {{- $ruleID := .QueryParam "ruleId" -}}
 {{- $rule := .RuleByToken $ruleID -}}
 
-<h2><i class="ti ti-cloud"></i> Sitewide Rule</h2>
+<h2>{{icon "cloud"}} Sitewide Rule</h2>
 
 <div class="info margin-bottom">
 	This sitewide rule was created by the domain admin.  It cannot be changed.

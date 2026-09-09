@@ -18,7 +18,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a class="button tertiary" href="/@me/settings/mobile" hx-boost="true"><i class="ti ti-back"></i> Back</a>
+				<a class="button tertiary" href="/@me/settings/mobile" hx-boost="true">{{icon "back"}} Back</a>
 			{{ end }} -->
 
 			{{ if $isDesktop }}
@@ -30,7 +30,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">OAuth Clients <i class="ti ti-chevron-down"></i></a>
+					<a class="button">OAuth Clients {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a class="turboclick dropdown-item" href="/@me/settings/visibility" hx-boost="true">Visibility</a>
 						<a class="turboclick dropdown-item" href="/@me/settings/password" hx-boost="true">Password</a>
@@ -42,7 +42,7 @@
 
 			<div class="right">
 				<a href="https://emissary.dev/user-profile" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -56,7 +56,7 @@
 				</div>
 
 				<div>
-					Client applications use <a href="https://en.wikipedia.org/wiki/OAuth" target="_blank">OAuth <i class="ti ti-link-outbound"></i></a> to access the data in your profile
+					Client applications use <a href="https://en.wikipedia.org/wiki/OAuth" target="_blank">OAuth {{icon "link-outbound"}}</a> to access the data in your profile
 					that you allow.  When you connect a client (like mobile apps, and some other websites) it will appear
 					here. You'll be able to revoke clients' access at any time.
 				</div>

@@ -41,7 +41,7 @@
 
 		{{- if not .IsPublic -}}
 			<div hx-get="/@{{.UserID}}/publish" class="clickable alert-green margin-none" role="button">
-				<i class="ti ti-check-circle"></i> 
+				{{icon "check-circle"}} 
 				Your profile IS READY TO PUBLISH on the social web.
 				<span class="text-underline">Click here to publish it now</span>
 			</div>

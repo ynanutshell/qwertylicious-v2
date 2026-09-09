@@ -15,20 +15,20 @@
 			</span>
 		{{- end -}}
 
-		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-person"></i> Profile</button>
-		<button role="tab" aria-selected="true" hx-get="/@me/newsfeed/notes?followingId={{$following.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-note"></i> Notes</button>
-		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}"><i class="ti ti-rule"></i> Rule</button>
+		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "person"}} Profile</button>
+		<button role="tab" aria-selected="true" hx-get="/@me/newsfeed/notes?followingId={{$following.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "note"}} Notes</button>
+		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}">{{icon "rule"}} Rule</button>
 
 		{{ if $following.IsNew -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-plus"></i> Follow</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "plus"}} Follow</button>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Following</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Following</button>
 		{{- end }}
 
 		{{ if $follower.IsNew -}}
 			<span class="text-light-gray margin-left" disabled>Doesn't Follow You</span>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Follows You</button>
+			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Follows You</button>
 		{{- end }}
 	</div>
 </div>

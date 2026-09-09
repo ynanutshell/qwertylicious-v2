@@ -52,14 +52,14 @@
 						<div class="flex-row">
 							<div class="width-32 flex-shrink-0"></div>
 							<div class="bold italics text-green text-sm">
-								<i class="ti ti-chat-fill"></i> New Replies
+								{{icon "chat-fill"}} New Replies
 							</div>
 						</div>
 					{{- else if eq "MUTED" $message.StateID -}}
 						<div class="flex-row">
 							<div class="width-32 flex-shrink-0"></div>
 							<div class="bold italics text-gray text-sm">
-								<i class="ti ti-mute"></i> Notifications Muted
+								{{icon "mute"}} Notifications Muted
 							</div>
 						</div>
 					{{- else if ne "PRIMARY" $message.Origin.Type -}}
@@ -148,7 +148,7 @@
 	{{- if $inbox.IsLength 6 -}}
 		<div id="social-load-more" class="margin-vertical-lg text-sm">
 			<button>
-				<span class="spin"><i class="ti ti-loading"></i></span> 
+				<span class="spin">{{icon "loading"}}</span> 
 				Loading...
 			</button>
 		</div>

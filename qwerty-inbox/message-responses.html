@@ -20,7 +20,7 @@
 			aria-label="Shared. Click to undo"
 			hx-post="/@me/newsfeed/message-set-response?messageId={{$message.ID}}" 
 			hx-vals='{"type":"Announce", "url":"{{$url}}", "exists":false}'
-		><i class="ti ti-announce-fill"></i> Shared</span>
+		>{{icon "announce-fill"}} Shared</span>
 	{{- else -}}
 		<span 
 			id="announce-{{$message.ID}}" 
@@ -29,7 +29,7 @@
 			aria-label="Share this item"
 			hx-post="/@me/newsfeed/message-set-response?messageId={{$message.ID}}" 
 			hx-vals='{"type":"Announce", "url":"{{$url}}", "exists":true}'
-		><i class="ti ti-announce"></i> Share</span>
+		>{{icon "announce"}} Share</span>
 	{{- end -}}
 
 	{{- if $message.IsLiked -}}
@@ -40,7 +40,7 @@
 			aria-label="Liked. Click to undo."
 			hx-post="/@me/newsfeed/message-set-response?messageId={{$message.ID}}" 
 			hx-vals='{"type":"Like", "url":"{{$url}}", "exists":false}'
-		><i class="ti ti-like-fill"></i> Liked</span>
+		>{{icon "like-fill"}} Liked</span>
 	{{- else -}}
 		<span 
 			id="like-{{$message.ID}}" 
@@ -49,7 +49,7 @@
 			aria-label="Like' this item"
 			hx-post="/@me/newsfeed/message-set-response?messageId={{$message.ID}}" 
 			hx-vals='{"type":"Like", "url":"{{$url}}", "exists":true}'
-		><i class="ti ti-like"></i> Like</span>
+		>{{icon "like"}} Like</span>
 	{{- end -}}
 	-->
 

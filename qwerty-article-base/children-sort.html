@@ -23,7 +23,7 @@
 				<tr>
 					<td>
 						<div class="drag-handle">
-							<span><i class="ti ti-grip-vertical"></i>&nbsp;</span>
+							<span>{{icon "grip-vertical"}}&nbsp;</span>
 							<input type="hidden" name="keys" value="{{.StreamID}}">
 							{{.Label}}
 						</div>
@@ -40,7 +40,7 @@
 	</form>
 
 	<div>
-		<a hx-get="/{{.StreamID}}/add-child" class="button primary"><i class="ti ti-plus"></i> Add Another Child Page</a>
+		<a hx-get="/{{.StreamID}}/add-child" class="button primary">{{icon "plus"}} Add Another Child Page</a>
 	</div>
 
 {{- else if .UserCan "add-child" -}}
@@ -51,7 +51,7 @@
 				&quot;Child&quot; pages are organized beneath this one in the site map.
 			</div>
 			<br>
-			<a hx-get="/{{.StreamID}}/add-child" class="button primary"><i class="ti ti-plus"></i> Add a Child Page</a>
+			<a hx-get="/{{.StreamID}}/add-child" class="button primary">{{icon "plus"}} Add a Child Page</a>
 		</div>
 	</div>
 

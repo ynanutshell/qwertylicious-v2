@@ -1,10 +1,10 @@
 <div id="article-social" class="flex-row flex-align-center">
 	<div class="flex-grow text-xs camper-show-if-has-accounts flex-row flex-align-center" style="gap:0px;" hidden>
 		<button class="camper-intent-button" data-intent="like" data-object="{{.Permalink}}">
-			<i class="ti ti-heart"></i> 0
+			{{icon "heart"}} 0
 		</button>
 		<button class="camper-intent-button" data-intent="reply" data-inreplyto="{{.Permalink}}">
-			<i class="ti ti-message-circle"></i> 0
+			{{icon "message-circle"}} 0
 		</button>
 		<span hx-get="/{{.StreamID}}/intent">
 			<span class="flex-row flex-align-center clickable">
@@ -15,8 +15,8 @@
 		</span>
 	</div>
 	<div class="flex-grow text-xs camper-hide-if-has-accounts">
-		<button hx-get="/{{.StreamID}}/intent?intent=Like&object={{.Permalink}}"><i class="ti ti-heart"></i> 0</button>
-		<button hx-get="/{{.StreamID}}/intent?intent=Reply&inReplyTo={{.Permalink}}"><i class="ti ti-message-circle"></i> 0</button>
+		<button hx-get="/{{.StreamID}}/intent?intent=Like&object={{.Permalink}}">{{icon "heart"}} 0</button>
+		<button hx-get="/{{.StreamID}}/intent?intent=Reply&inReplyTo={{.Permalink}}">{{icon "message-circle"}} 0</button>
 	</div>
 	<div class="flex-grow align-right">
 		<!--

@@ -5,10 +5,10 @@
 		<!-- Left: Menu Toggle -->
 		<div class="left">
 			<button class="nav-item ToggleShow" aria-label="Show Navigation">
-				<i class="ti ti-menu-2"></i>
+				{{icon "menu-2"}}
 			</button>
 			<button class="nav-item ToggleHide" style="display: none" aria-label="Hide Navigation">
-				<i class="ti ti-x"></i>
+				{{icon "x"}}
 			</button>
 		</div>
 
@@ -21,7 +21,7 @@
 		<!-- Right: Actions -->
 		<div class="right">
 			<!-- Insert template for page actions here -->
-				<button class="icon"><i class="ti ti-circle"></i></button>
+				<button class="icon">{{icon "circle"}}</button>
 		</div>
 	</div>
 	<div id="topbar-content" class="nav-content ToggleContent flex-column flex-justify-between" style="display:none;" hx-push-url="true" hx-swap="transition:true">
@@ -38,29 +38,29 @@
 			{{- end -}}
 			{{- if .IsAuthenticated -}}
 				<a href="/@me" id="nav-outbox" class="nav-item turboclick" aria-label="Profile">
-					<span class="icon selected-hide"><i class="ti ti-user"></i></span>
-					<span class="icon selected-show"><i class="ti ti-user-filled"></i></span>
+					<span class="icon selected-hide">{{icon "user"}}</span>
+					<span class="icon selected-show">{{icon "user-filled"}}</span>
 					<span class="label">Profile</span>
 				</a>
 				<a href="/@me/newsfeed" id="nav-inbox" class="nav-item turboclick" aria-label="Feed">
-					<span class="icon selected-hide"><i class="ti ti-article"></i></span>
-					<span class="icon selected-show"><i class="ti ti-article-filled"></i></span>
+					<span class="icon selected-hide">{{icon "article"}}</span>
+					<span class="icon selected-show">{{icon "article-filled"}}</span>
 					<span class="label">Feed</span>
 				</a>
 				<a href="/@me/settings" id="nav-settings" class="nav-item turboclick" aria-label="Settings">
-					<span class="icon selected-hide"><i class="ti ti-settings"></i></span>
-					<span class="icon selected-show"><i class="ti ti-settings-filled"></i></span>
+					<span class="icon selected-hide">{{icon "settings"}}</span>
+					<span class="icon selected-show">{{icon "settings-filled"}}</span>
 					<span class="label">Settings</span>
 				</a>
 			{{- else if .IsIdentity -}}
 				<a href="/@guest" id="nav-settings" class="nav-item turboclick" aria-label="Profile">
-					<span class="icon selected-hide"><i class="ti ti-user"></i></span>
-					<span class="icon selected-show"><i class="ti ti-user-filled"></i></span>
+					<span class="icon selected-hide">{{icon "user"}}</span>
+					<span class="icon selected-show">{{icon "user-filled"}}</span>
 					<span class="label">Profile</span>
 				</a>
 			{{- else -}}
 				<a href="/signin" id="nav-signin" class="nav-item turboclick" aria-label="Sign In">
-					<span class="icon"><i class="ti ti-user"></i></span>
+					<span class="icon">{{icon "user"}}</span>
 					<span class="label">Sign In</span>
 				</a>
 			{{- end -}}
@@ -69,8 +69,8 @@
 			{{- if .IsAuthenticated -}}
 				{{- if .IsOwner -}}
 					<a href="/admin/domain" id="nav-admin" class="nav-item turboclick" aria-label="Server Admin">
-						<span class="icon selected-hide"><i class="ti ti-database"></i></span>
-						<span class="icon selected-show"><i class="ti ti-database-filled"></i></span>
+						<span class="icon selected-hide">{{icon "database"}}</span>
+						<span class="icon selected-show">{{icon "database-filled"}}</span>
 						<span class="label">Server</span>
 					</a>
 				{{- end -}}

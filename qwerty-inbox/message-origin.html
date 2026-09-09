@@ -31,7 +31,7 @@
 {{- else if eq "REPLY" $message.Origin.Type -}}
 	
 	<span class="clickable text-gray text-xs" hx-get="/@me/newsfeed/browse-actor?url={{$message.Origin.URL}}">
-		<i class="ti ti-reply"></i> {{$message.Origin.Label}} replied to this
+		{{icon "reply"}} {{$message.Origin.Label}} replied to this
 	</span>
 
 {{- end -}}

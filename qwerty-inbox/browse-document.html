@@ -51,14 +51,14 @@
 		<div class="pos-absolute-top-right text-sm" hx-target="#modal-window" hx-push-url="false" hx-swap="innerHTML">
 			<span class="margin-right text-light-gray">{{ $document.Published | tinyDate }} ago</span>
 			{{ if eq $document.ID ($builder.QueryParam "url") }}
-				<button hx-get="/@me/newsfeed/browse-tree?url={{$document.ID}}" aria-label="Use Nested Layout" class="selected"><i class="ti ti-focus"></i></button>
+				<button hx-get="/@me/newsfeed/browse-tree?url={{$document.ID}}" aria-label="Use Nested Layout" class="selected">{{icon "focus"}}</button>
 			{{else}}
-				<button hx-get="/@me/newsfeed/browse-tree?url={{$document.ID}}" aria-label="Use Nested Layout"><i class="ti ti-focus"></i></button>
+				<button hx-get="/@me/newsfeed/browse-tree?url={{$document.ID}}" aria-label="Use Nested Layout">{{icon "focus"}}</button>
 			{{end}}
-			<button hx-get="/@me/newsfeed/browse-index?url={{$document.ID}}" aria-label="Use Index Layout"><i class="ti ti-list"></i></button>
+			<button hx-get="/@me/newsfeed/browse-index?url={{$document.ID}}" aria-label="Use Index Layout">{{icon "list"}}</button>
 			<span class="margin-horizontal-sm"></span>
-			<a href="{{$attributedTo.ID}}" target="_blank" class="button" aria-label="Visit Actor Profile"><i class="ti ti-person"></i></a>
-			<a href="{{$document.URL}}" target="_blank" class="button" aria-label="Visit Original Website"><i class="ti ti-globe"></i></a>
+			<a href="{{$attributedTo.ID}}" target="_blank" class="button" aria-label="Visit Actor Profile">{{icon "person"}}</a>
+			<a href="{{$document.URL}}" target="_blank" class="button" aria-label="Visit Original Website">{{icon "globe"}}</a>
 		</div>
 		
 	</div>

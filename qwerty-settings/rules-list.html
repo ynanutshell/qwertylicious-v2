@@ -21,11 +21,11 @@
 		<td>&rarr;</td>
 		<td class="nowrap" class="flex-row flex-align-center">
 			{{- if eq "BLOCK" .Action -}}
-				<i class="ti ti-block"></i> Block
+				{{icon "block"}} Block
 			{{- else if eq "MUTE" .Action -}}
-				<i class="ti ti-mute"></i> Mute
+				{{icon "mute"}} Mute
 			{{- else -}}
-				<i class="ti ti-tag"></i> &quot;{{.Label}}&quot;
+				{{icon "tag"}} &quot;{{.Label}}&quot;
 			{{- end -}}
 		</td>
 		<td class="nowrap">

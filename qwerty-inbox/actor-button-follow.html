@@ -4,21 +4,21 @@
 {{- $class := iif (eq "POST" .Method) "visible" "" -}}
 
 <span script="install popUp(position:'center')" hx-target="this" hx-swap="outerHTML" hx-push-url="false" class="{{$class}}">
-	<button class="popUp-button bold"><i class="ti ti-check"></i> Following</button>
+	<button class="popUp-button bold">{{icon "check"}} Following</button>
 	<div class="popUp-content text-md width-320">
 
 		<div class="margin-bottom-lg">
 			<div class="bold ellipsis">Following {{$following.Label}}</div>
 			{{- if eq "ACTIVITYPUB" $following.Method -}}
-				<div class="text-sm text-light-gray"><i class="ti ti-activitypub"></i> ActivityPub. Real-time updates.</div>
+				<div class="text-sm text-light-gray">{{icon "activitypub"}} ActivityPub. Real-time updates.</div>
 			{{- else if eq "POLL" $following.Method -}}
-				<div class="text-sm text-light-gray"><i class="ti ti-rss"></i> RSS/Atom. Daily Updates.</div>
+				<div class="text-sm text-light-gray">{{icon "rss"}} RSS/Atom. Daily Updates.</div>
 			{{- end -}}
 		</div>
 		
 		<div>
 			<span class="bold margin-right-sm">Settings:</span>
-			<span class="htmx-request-show spin"><i class="ti ti-loading"></i></span>
+			<span class="htmx-request-show spin">{{icon "loading"}}</span>
 			<span class="htmx-request-hide" id="htmx-response-message"></span>
 		</div>
 
@@ -46,7 +46,7 @@
 
 		<hr class="margin-vertical-sm">
 		<div class="align-center text-red" hx-post="/@me/newsfeed/actor-button-unfollow?followingId={{$following.ID}}&folderId={{$folderID}}&url={{$url}}" role="button">
-			<i class="ti ti-cancel"></i> Stop Following
+			{{icon "cancel"}} Stop Following
 		</div>
 	</div>
 </span>

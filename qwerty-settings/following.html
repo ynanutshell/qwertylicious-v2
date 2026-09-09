@@ -17,7 +17,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true">{{icon "back"}}</a>
 			{{ end }} -->
 			{{ if $isDesktop }}
 				<div class="left tabs">
@@ -29,7 +29,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Following <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Following {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a href="/@me/settings/following" class="turboclick dropdown-item selected" hx-boost="true">Following</a>
 						<a href="/@me/settings/followers" class="turboclick dropdown-item" hx-boost="true">Followers</a>
@@ -41,7 +41,7 @@
 			{{ end }}
 			<div class="right">
 				<a href="https://emissary.dev/following" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -62,7 +62,7 @@
 		<div class="table margin-top" style="border-bottom:none;">
 			<div class="link flex-row" role="button" hx-get="/@me/settings/following-search" hx-push-url="false">
 				<div class="flex-grow-1">
-					<i class="ti ti-plus"></i>
+					{{icon "plus"}}
 					Follow Someone
 				</div>
 			</div>

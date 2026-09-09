@@ -1,6 +1,6 @@
 {{- $search := .QueryParam "search" -}}
 {{- $folderID := .QueryParam "folderId" -}}
-<h2 class="margin-bottom-lg"><i class="ti ti-plus"></i> Follow Someone</h2>
+<h2 class="margin-bottom-lg">{{icon "plus"}} Follow Someone</h2>
 
 <div script="install Menu(input:#following-search-input)" id="following-search">
 
@@ -26,7 +26,7 @@
 			hx-indicator="#following-search">
 
 		<div class="htmx-request-show pos-absolute-top-right text-light-gray">
-			<span class="spin"><i class="ti ti-loading"></i></span>
+			<span class="spin">{{icon "loading"}}</span>
 		</div>
 
 	</div>

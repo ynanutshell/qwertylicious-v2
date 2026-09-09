@@ -17,7 +17,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true">{{icon "back"}}</a>
 			{{ end }} -->
 			{{ if $isDesktop }}
 				<div class="left tabs">
@@ -29,7 +29,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Images <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Images {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a href="/@me/settings/general" class="turboclick dropdown-item" hx-boost="true">General</a>
 						<a href="/@me/settings/images" class="turboclick dropdown-item selected" hx-boost="true">Images</a>
@@ -41,7 +41,7 @@
 			{{ end }}
 			<div class="right">
 				<a href="https://emissary.dev/user-profile" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>

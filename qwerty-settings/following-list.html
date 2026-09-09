@@ -37,7 +37,7 @@
 						</span>
 					{{- else if eq "IMPORT-PENDING" .Status -}}
 						<span class="text-light-gray">
-							<i class="ti ti-import"></i>
+							{{icon "import"}}
 							Imported
 						</span>
 					{{- else if eq "ERROR" .Status -}}

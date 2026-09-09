@@ -22,7 +22,7 @@
 			</div>
 			<div class="right">
 				<a href="https://emissary.dev/circles" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -37,14 +37,14 @@
 
 			<div class="clickable card flex-grow flex-column padding margin-bottom md:width-1-2" hx-get="/@me/settings/circle-edit?circleId={{$circle.ID}}">
 
-				<div class="text-sm text-gray margin-bottom"><i class="ti ti-circle"></i> CIRCLE DESCRIPTION</div>
+				<div class="text-sm text-gray margin-bottom">{{icon "circle"}} CIRCLE DESCRIPTION</div>
 				<div class="flex-grow margin-bottom">{{$circle.Description}}</div>
 				<div class="flex-row">
 					<div class="flex-grow">
 						{{- if $circle.IsFeatured -}}
-							<span class="text-sm text-green"><i class="ti ti-check-circle-fill"></i> Shows on Profile</span>
+							<span class="text-sm text-green">{{icon "check-circle-fill"}} Shows on Profile</span>
 						{{- else -}}
-							<span class="text-sm text-light-gray"><i class="ti ti-circle"></i> Not Featured</span>
+							<span class="text-sm text-light-gray">{{icon "circle"}} Not Featured</span>
 						{{- end -}}
 					</div>
 
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<div class="clickable card flex-grow flex-column padding align-center margin-bottom md:width-1-4" hx-get="/@me/settings/circle-edit?circleId={{$circle.ID}}&selected-tab=2">
-				<div class="text-sm text-gray"><i class="ti ti-box-fill"></i> SELL ONLINE</div>
+				<div class="text-sm text-gray">{{icon "box-fill"}} SELL ONLINE</div>
 				<div class="flex-grow text-2xl margin-none bold">
 					{{- if $circle.ProductIDs.IsEmpty -}}
 						&mdash;
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="clickable card flex-grow flex-column padding align-center margin-bottom md:width-1-4" hx-get="/@me/settings/circle-member-add?circleId={{$circle.ID}}">
-				<div class="text-sm text-gray"><i class="ti ti-person-fill"></i> MEMBERS</div>
+				<div class="text-sm text-gray">{{icon "person-fill"}} MEMBERS</div>
 				<div class="flex-grow text-2xl margin-none bold">{{$circle.MemberCount}}</div>
 				<div class="align-center">
 					<button class="primary text-xs" class="primary">&plus; Add a Member</button>

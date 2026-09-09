@@ -4,7 +4,7 @@
 {{- $class := iif (eq "POST" .Method) "visible" "" -}}
 
 <span script="install popUp(position:'center')" hx-target="this" hx-swap="outerHTML" hx-push-url="false" class="{{$class}}">
-	<button class="popUp-button bold"><i class="ti ti-block"></i> Blocked</button>
+	<button class="popUp-button bold">{{icon "block"}} Blocked</button>
 	<div class="popUp-content width-320 text-md">
 		<div class="margin-bottom-lg">
 			<div class="bold ellipsis">Blocked {{$block.Label}}</div>
@@ -27,7 +27,7 @@
 
 		<hr>
 		<div class="align-center text-red" hx-post="/@me/settings/actor-button-unblock?ruleId={{$block.ID}}&folderId={{$folderID}}&url={{$url}}" role="button">
-			<i class="ti ti-cancel"></i> Stop Blocking
+			{{icon "cancel"}} Stop Blocking
 		</div>
 	</div>
 </span>

@@ -18,7 +18,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true">{{icon "back"}}</a>
 			{{ end }} -->
 			{{ if $isDesktop }}
 				<div class="left tabs">
@@ -30,7 +30,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Import <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Import {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a href="/@me/settings/general" class="turboclick dropdown-item" hx-boost="true">General</a>
 						<a href="/@me/settings/images" class="turboclick dropdown-item" hx-boost="true">Images</a>
@@ -42,7 +42,7 @@
 			{{ end }}
 			<div class="right">
 				<a href="https://emissary.dev/migration" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -56,7 +56,7 @@
 					{{- if ne "" $iconURL -}}
 						<img src="{{$iconURL}}" alt="" class="circle width-100%">
 					{{- else -}}
-						<div class="circle width-100% flex-center"><i class="ti ti-person"></i></div>
+						<div class="circle width-100% flex-center">{{icon "person"}}</div>
 					{{- end -}}
 				</div>
 				<div class="flex-grow">
@@ -71,7 +71,7 @@
 
 				{{- if $imports.IsEmpty -}}
 
-					<div class="text-lg bold"><i class="ti ti-database-down"></i> Import from Another Server</div>
+					<div class="text-lg bold">{{icon "database-down"}} Import from Another Server</div>
 
 					<div>
 						You can import all of your profile data from other Fediverse
@@ -88,7 +88,7 @@
 					<div class="margin-bottom-lg">
 						<i>Note: online account migration is new, and very few servers support
 						this action right now.</i>
-						<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More <i class="ti ti-link-outbound"></i></a>
+						<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More {{icon "link-outbound"}}</a>
 					</div>
 
 					<button hx-get="/@me/settings/import-authenticate" class="primary">Import My Data...</button>
@@ -101,7 +101,7 @@
 					{{- if eq "AUTHORIZATION-ERROR" $import.StateID -}}
 
 						<div class="flex-row flex-align-start">
-							<div class="text-lg text-red"><i class="ti ti-alert"></i></div>
+							<div class="text-lg text-red">{{icon "alert"}}</div>
 							<div>
 								<div class="bold text-red text-lg">Your Import Could Not Be Started</div>
 								<div>{{$import.Message}}</div>
@@ -237,7 +237,7 @@
 							<div>Processed: {{$import.CompleteItems}} {{pluralize $import.CompleteItems "Record" "Records"}}</div>
 
 							{{- if $importErrors.IsEmpty -}}
-								<div class="margin-bottom-lg">Errors: None <i class="ti ti-thumbs-up"></i></div>
+								<div class="margin-bottom-lg">Errors: None {{icon "thumbs-up"}}</div>
 							{{- else -}}
 							
 								<details class="margin-bottom-lg">
@@ -290,7 +290,7 @@
 
 					{{- else if eq "DONE" $import.StateID -}}
 
-						<div class="text-lg bold text-green">Import Complete <i class="ti ti-thumbs-up"></i></div>
+						<div class="text-lg bold text-green">Import Complete {{icon "thumbs-up"}}</div>
 						<table class="text-lg">
 							<tr>
 								<td class="padding-right">From</td>

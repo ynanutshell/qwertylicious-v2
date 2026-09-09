@@ -21,13 +21,13 @@
 	hx-swap="outerHTML"
 	hx-push-url="false">
 	<a href="/@me/newsfeed/feed" class="menu-item {{if $isMobile}}icon {{end}}turboclick {{if $allFolders}}selected{{end}}">
-		<span>{{if $isDesktop}}All Folders{{else}}<i class="ti ti-border-all"></i>{{end}}</span>
+		<span>{{if $isDesktop}}All Folders{{else}}{{icon "border-all"}}{{end}}</span>
 	</a>
 	<div class="sortable">
 		{{- range $folders.Folders -}}
 			{{- $folderID := .FolderID.Hex -}}
 			<a href="/@me/newsfeed/folder?folderId={{$folderID}}" class="menu-item {{if $isMobile}}icon {{end}}turboclick {{if eq $selectedID .FolderID}}selected{{end}} ellipsis hover-trigger">
-				<div class="flex-grow"><i class="ti ti-{{.Icon}}"></i>{{if $isDesktop}} <span class="label">{{.Label}}</span>{{end}}</div>
+				<div class="flex-grow">{{icon "{{.Icon}}"}}{{if $isDesktop}} <span class="label">{{.Label}}</span>{{end}}</div>
 				{{if $isDesktop}}
 					<span class="flex-shrink folder-handle">
 						{{- if ne 0 .UnreadCount -}}
@@ -35,7 +35,7 @@
 							class="text-sm text-light-gray hover-hide">&#9679;</span>
 						{{- end -}}
 						<span class="hover-show">
-							<i class="ti ti-grip-vertical"></i>
+							{{icon "grip-vertical"}}
 						</span>
 					</span>
 				{{end}}
@@ -45,7 +45,7 @@
 	</div>
 	<br />
 	<a hx-get="/@me/newsfeed/folder-add" class="menu-item {{if $isMobile}}icon {{end}}action turboclick">
-		<span><i class="ti ti-plus"></i>{{if $isDesktop}} New Folder{{end}}</span>
+		<span>{{icon "plus"}}{{if $isDesktop}} New Folder{{end}}</span>
 	</a>
 </div>
 

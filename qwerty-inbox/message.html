@@ -25,8 +25,8 @@
 				</span>
 
 				<span class="button-group">
-					<a href="{{$message.URL}}" target="_blank" class="button"><i class="ti ti-globe"></i> Website</a>
-					<a hx-get="/@me/newsfeed/message-code?messageId={{$message.ID}}&followingId={{$followingID}}" class="button"><i class="ti ti-braces"></i> Code</a>
+					<a href="{{$message.URL}}" target="_blank" class="button">{{icon "globe"}} Website</a>
+					<a hx-get="/@me/newsfeed/message-code?messageId={{$message.ID}}&followingId={{$followingID}}" class="button">{{icon "braces"}} Code</a>
 				</span>
 			</div>
 
@@ -64,7 +64,7 @@
 		<div class="margin-bottom">
 			{{- if $inReplyTo.NotNil -}}
 				<div role="link" class="italics text-sm link" hx-get="/@me/newsfeed/message?messageId={{$message.ID}}&folderID={{$folderID}}&origin.followingId={{$followingID}}&url={{$inReplyTo.ID}}">
-					<i class="ti ti-reply-fill"></i> Replying to {{$inReplyToAttributedTo.Name}}...
+					{{icon "reply-fill"}} Replying to {{$inReplyToAttributedTo.Name}}...
 				</div>
 			{{- else -}}
 				{{- template "message-origin" $message -}}
@@ -126,7 +126,7 @@
 	{{- end -}}
 
 	<div hx-get="/@me/newsfeed/responses-replies?messageId={{$message.ID}}&url={{$url}}" hx-trigger="load" hx-target="this" hx-swap="outerHTML" hx-push-url="false">
-		<span class="spin"><i class="ti ti-loading"></i></span> Loading Replies
+		<span class="spin">{{icon "loading"}}</span> Loading Replies
 	</div>
 
 </div>

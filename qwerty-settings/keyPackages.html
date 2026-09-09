@@ -19,7 +19,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a class="button tertiary" href="/@me/settings/mobile" hx-boost="true"><i class="ti ti-back"></i> Back</a>
+				<a class="button tertiary" href="/@me/settings/mobile" hx-boost="true">{{icon "back"}} Back</a>
 			{{ end }} -->
 
 			{{ if $isDesktop }}
@@ -31,7 +31,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Encrypted Messages <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Encrypted Messages {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a class="turboclick dropdown-item" href="/@me/settings/visibility" hx-boost="true">Visibility</a>
 						<a class="turboclick dropdown-item" href="/@me/settings/password" hx-boost="true">Password</a>
@@ -43,7 +43,7 @@
 
 			<div class="right">
 				<a href="https://emissary.dev/user-profile" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -82,7 +82,7 @@
 				<div class="table">
 					{{- range $index, $keyPackage := $keyPackages -}}
 						<div class="flex-row">
-							<div><i class="ti ti-shield-lock" style="font-size:2em;"></i></div>
+							<div>{{icon "shield-lock" style="font-size:2em;"}}</div>
 							<div class="flex-grow nowrap">
 								<div class="bold margin-none">{{$keyPackage.GeneratorName}}</div>
 								<div class="text-sm text-gray margin-bottom">{{$keyPackage.CreateDate | longDate }}</div>

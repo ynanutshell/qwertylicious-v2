@@ -21,19 +21,19 @@
 		<div script="install Clipboard" class="text-sm gray50 align-center ellipsis">
 			<span class="clipboard-copy-button clickable">
 				<span class="clipboard-text">@{{.Username}}@{{.Hostname}}</span>
-				<i class="ti ti-copy"></i>
+				{{icon "copy"}}
 			</span>
-			<span class="clipboard-copy-feedback text-green" style="display:none"><i class="ti ti-check"></i> Copied</span>
+			<span class="clipboard-copy-feedback text-green" style="display:none">{{icon "check"}} Copied</span>
 		</div>
 		
 		{{- if .IsMyself -}}
 			<div class="margin-top-lg text-sm align-center">
-				<a href="/@me/settings" class="button"><i class="ti ti-gear"></i> Edit Profile</a>
+				<a href="/@me/settings" class="button">{{icon "gear"}} Edit Profile</a>
 				<button hx-post="/signout" hx-target="body">Sign Out</button>
 			</div>
 		{{- else -}}
 			<div class="margin-top-lg">
-				<button type="button" class="primary width-100% ellipsis" hx-get="/@{{.UserID}}/intent?intent=follow&object={{.Permalink}}"><i class="ti ti-plus-circle"></i> Follow {{.DisplayName}}</button>
+				<button type="button" class="primary width-100% ellipsis" hx-get="/@{{.UserID}}/intent?intent=follow&object={{.Permalink}}">{{icon "plus-circle"}} Follow {{.DisplayName}}</button>
 			</div>
 		{{- end -}}
 
@@ -42,7 +42,7 @@
 		</div>
 
 		{{- if ne "" .Location -}}
-			<div class="margin-top p-adr"><span class="p-label"><i class="ti ti-map-pin"></i> {{.Location}}</a></div>
+			<div class="margin-top p-adr"><span class="p-label">{{icon "map-pin"}} {{.Location}}</a></div>
 		{{- end -}}
 
 	</div>
@@ -53,7 +53,7 @@
 
 		{{- if $links.NotEmpty -}}
 			{{- range $links -}}
-				<div class="margin-top-xs"><a rel="me" class="text-plain u-url" href="{{.ProfileURL}}" target="_blank"><i class="ti ti-globe"></i> {{.Name}}</a></div>
+				<div class="margin-top-xs"><a rel="me" class="text-plain u-url" href="{{.ProfileURL}}" target="_blank">{{icon "globe"}} {{.Name}}</a></div>
 			{{- end -}}
 		{{- end -}}
 

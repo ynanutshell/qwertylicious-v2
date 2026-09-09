@@ -12,7 +12,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true">{{icon "back"}}</a>
 			{{ end }} -->
 			{{ if $isDesktop }}
 				<div class="left tabs">
@@ -24,7 +24,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Export <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Export {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a href="/@me/settings/general" class="turboclick dropdown-item" hx-boost="true">General</a>
 						<a href="/@me/settings/images" class="turboclick dropdown-item" hx-boost="true">Images</a>
@@ -36,7 +36,7 @@
 			{{ end }}
 			<div class="right">
 				<a href="https://emissary.dev/migration" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -48,7 +48,7 @@
 				{{- if ne "" $iconURL -}}
 					<img src="{{$iconURL}}" alt="" class="circle width-100%">
 				{{- else -}}
-					<div class="circle width-100% flex-center"><i class="ti ti-person"></i></div>
+					<div class="circle width-100% flex-center">{{icon "person"}}</div>
 				{{- end -}}
 			</div>
 			<div class="flex-grow">
@@ -62,7 +62,7 @@
 		{{- if $oauthUserTokens.IsEmpty -}}
 
 			<div class="card border padding">
-				<div class="text-lg bold"><i class="ti ti-database-up"></i> Export to Other Servers</div>
+				<div class="text-lg bold">{{icon "database-up"}} Export to Other Servers</div>
 
 				<div>
 					You can export all of your profile data to other Fediverse
@@ -78,7 +78,7 @@
 				<div class="margin-top">
 					<i>Note: online account migration is new, and very few servers support
 					this action right now.</i>
-					<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More <i class="ti ti-link-outbound"></i></a>
+					<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More {{icon "link-outbound"}}</a>
 				</div>
 			</div>
 
@@ -97,7 +97,7 @@
 					<div class="flex-row margin-bottom-lg">
 						<div class="flex-grow">
 							<div class="text-lg bold margin-top-none margin-bottom-lg">
-								<i class="ti ti-database-up"></i> 
+								{{icon "database-up"}} 
 								Exporting to: {{$oauthUserToken.name}}
 							</div>
 
@@ -106,13 +106,13 @@
 									{{- if ne "" $actorIconURL -}}
 										<img src="{{$actorIconURL}}" alt="" class="circle width-100%">
 									{{- else -}}
-										<div class="circle width-100% flex-center"><i class="ti ti-person"></i></div>
+										<div class="circle width-100% flex-center">{{icon "person"}}</div>
 									{{- end -}}
 								</div>
 								<div>
 									<div class="bold">{{$actor.Name}}</div>
 									<div class="text-sm">
-										<a href="{{$actor.ID}}" class="text-nocolor text-gray" target="_blank">{{$actor.UsernameOrID}} <i class="ti ti-link-outbound"></i></a>
+										<a href="{{$actor.ID}}" class="text-nocolor text-gray" target="_blank">{{$actor.UsernameOrID}} {{icon "link-outbound"}}</a>
 									</div>
 									<div class="text-sm text-gray">export date: {{$startDate | shortDate}}</div>
 								</div>

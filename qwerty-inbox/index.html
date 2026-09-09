@@ -56,7 +56,7 @@
 			{{- else -}}
 				<h1 class="text-xl bold margin-none flex-grow">
 					{{- if $isMobile -}}
-						<a href="/@me/newsfeed/mobile"><i class="ti ti-back"></i></a>
+						<a href="/@me/newsfeed/mobile">{{icon "back"}}</a>
 					{{- else -}}
 						{{iconFilled $folder.Icon}} 
 					{{- end }}
@@ -68,11 +68,11 @@
 			<div class="{{if $isDesktop}}text-sm{{end}} flex-row">
 				{{- if $selectedFolder -}}
 					{{- if $filter.IsZero -}}
-						<button hx-get="/@me/newsfeed/filter?folderId={{$folderID}}" class="icon button turboclick"><i class="ti ti-filter"></i></button>
+						<button hx-get="/@me/newsfeed/filter?folderId={{$folderID}}" class="icon button turboclick">{{icon "filter"}}</button>
 					{{- else -}}
-						<button hx-get="/@me/newsfeed/filter?folderId={{$folderID}}&followingId={{$followingID}}" class="selected ellipsis turboclick" style="max-width:160px;"><i class="ti ti-filter"></i>{{- if $isDesktop }} {{$filter.Label}}{{end}}</button>
+						<button hx-get="/@me/newsfeed/filter?folderId={{$folderID}}&followingId={{$followingID}}" class="selected ellipsis turboclick" style="max-width:160px;">{{icon "filter"}}{{- if $isDesktop }} {{$filter.Label}}{{end}}</button>
 					{{- end -}}
-					<button hx-get="/@me/newsfeed/folder-edit?folderId={{$folderID}}" class="icon button turboclick"><i class="ti ti-settings"></i></button>
+					<button hx-get="/@me/newsfeed/folder-edit?folderId={{$folderID}}" class="icon button turboclick">{{icon "settings"}}</button>
 				{{- end -}}
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 			<div class="card padding flex-row flex-align-center">
 				<div class="width-32">
 					<div class="circle width-32 flex-center">
-						<span class="spin"><i class="ti ti-loading"></i></span>
+						<span class="spin">{{icon "loading"}}</span>
 					</div>
 				</div>
 				<div>Loading Messages...</div>

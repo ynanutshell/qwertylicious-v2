@@ -16,20 +16,20 @@
 			</span>
 		{{- end -}}
 
-		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$url}}&search={{$search}}&folderId={{$folderID}}" aria-selected="true"><i class="ti ti-person"></i> Profile</button>
-		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-note"></i> Notes</button>
-		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}"><i class="ti ti-rule"></i> Rule</button>
+		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$url}}&search={{$search}}&folderId={{$folderID}}" aria-selected="true">{{icon "person"}} Profile</button>
+		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "note"}} Notes</button>
+		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}">{{icon "rule"}} Rule</button>
 
 		{{ if $following.IsNew -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-plus"></i> Follow</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "plus"}} Follow</button>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Following</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Following</button>
 		{{- end }}
 
 		{{ if $follower.IsNew -}}
 			<span class="text-light-gray margin-left" disabled>Doesn't Follow You</span>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Follows You</button>
+			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Follows You</button>
 		{{- end }}
 	</div>
 </div>
@@ -60,9 +60,9 @@
 		<div class="width-64 flex-shrink-0"></div>
 		<div class="text-sm">
 			<!--
-			<button hx-get="/@me/newsfeed/conversation-new?actorId={{$actor.ID}}" class="primary"><i class="ti ti-chat"></i> Direct Message</button>
+			<button hx-get="/@me/newsfeed/conversation-new?actorId={{$actor.ID}}" class="primary">{{icon "chat"}} Direct Message</button>
 			-->
-			<a class="button outline" href="{{$actor.ID}}" target="_blank"><i class="ti ti-globe"></i> Website</a>
+			<a class="button outline" href="{{$actor.ID}}" target="_blank">{{icon "globe"}} Website</a>
 		</div>
 	</div>
 
@@ -104,7 +104,7 @@
 			hx-target="this"
 			hx-swap="outerHTML"
 			hx-push-url="false">
-			<div class="margin-top bold"><span class="spin"><i class="ti ti-loading"></i></span> Loading Featured Posts...</div>
+			<div class="margin-top bold"><span class="spin">{{icon "loading"}}</span> Loading Featured Posts...</div>
 		</div>
 	{{- end -}}
 	

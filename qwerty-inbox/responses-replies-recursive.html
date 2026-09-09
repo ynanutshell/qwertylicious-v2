@@ -58,7 +58,7 @@
 			</span>
 			{{- if $object.Actor.NotNil -}}
 				{{- if $builder.IsMe $object.Actor.ID -}}
-					<span class="button" disabled><i class="ti ti-more-horizontal"></i></span>
+					<span class="button" disabled>{{icon "more-horizontal"}}</span>
 				{{- else -}}
 					<span
 						hx-get="/@me/newsfeed/actor-button?url={{$object.Actor.ID}}"

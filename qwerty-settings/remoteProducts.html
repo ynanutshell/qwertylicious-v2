@@ -13,7 +13,7 @@
 		Sign in to 
 		{{ range $index, $merchantAccount := $merchantAccounts }}
 			{{ if gt $index 0 }} or {{ end }}
-			<a href="{{$merchantAccount.ProductURL}}" target="_blank" class="nowrap">{{$merchantAccount.Name}} <i class="ti ti-new-window"></i></a>
+			<a href="{{$merchantAccount.ProductURL}}" target="_blank" class="nowrap">{{$merchantAccount.Name}} {{icon "new-window"}}</a>
 		{{ end }}
 		to create one or more products, then return here to link them to your posts.
 		<br><br>
@@ -46,7 +46,7 @@
 				<div class="flex-grow">{{icon $remoteProduct.Icon}} {{$remoteProduct.Name}}</div>						
 				<div class="margin-right-lg text-gray">{{$remoteProduct.Price}}</div>
 				<div>
-					<a href="{{$remoteProduct.AdminHref}}" target="_blank" class="button icon"><i class="ti ti-pencil"></i></a>
+					<a href="{{$remoteProduct.AdminHref}}" target="_blank" class="button icon">{{icon "pencil"}}</a>
 				</div>
 			</div>
 		{{- end -}}
@@ -56,8 +56,8 @@
 		For performance reasons, your product list is copied to this server.
 		If you've made changes, click here to 
 		<span script="on click trigger refreshPage" class="link nowrap">
-			<span class="htmx-request-hide"><i class="ti ti-reload"></i></span>
-			<span class="htmx-request-show spin"><i class="ti ti-reload"></i></span>
+			<span class="htmx-request-hide">{{icon "reload"}}</span>
+			<span class="htmx-request-show spin">{{icon "reload"}}</span>
 			refresh this list
 		</span>
 	</div>

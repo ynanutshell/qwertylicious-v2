@@ -1,5 +1,5 @@
 {{- if .HasEmailAddress -}}
-	<h1><i class="ti ti-email"></i> Edit Your Email Address</h1>
+	<h1>{{icon "email"}} Edit Your Email Address</h1>
 
 	<div class="card border padding margin-bottom-sm">
 		Enter a new email address to replace your current one.  We'll send you a verification email to complete the change.<br>
@@ -9,7 +9,7 @@
 	</div>
 
 {{- else -}}
-	<h1><i class="ti ti-email"></i> Add an Email Address</h1>
+	<h1>{{icon "email"}} Add an Email Address</h1>
 
 	<div class="card border padding margin-bottom-sm">
 		When you add an email address to your guest profile, you'll connect any purchases you made using that address.
@@ -32,7 +32,7 @@
 	<div class="margin-top-lg flex-row flex-align-center">
 		<button type="submit" class="primary htmx-request-hide">Set My Email Address</button>
 		<button type="submit" class="primary htmx-request-show" disabled>
-			<span class="spin"><i class="ti ti-loading"></i></span>
+			<span class="spin">{{icon "loading"}}</span>
 			Sending Code
 		</button>
 		<button type="button" script="on click trigger closeModal">Cancel</button>

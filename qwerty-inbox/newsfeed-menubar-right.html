@@ -20,4 +20,4 @@
 		Folder Settings are folder-specific, so they only appear when a folder is selected. -->
 
 {{- $selectedFolder := ne $folderID nilObjectID.Hex -}}
-<button hx-get="/@me/settings/following-search{{if $selectedFolder}}?folderId={{$folderID}}{{end}}" class="primary turboclick"><i class="ti ti-plus"></i>{{if $isDesktop}} Follow Someone{{end}}</button>
+<button hx-get="/@me/settings/following-search{{if $selectedFolder}}?folderId={{$folderID}}{{end}}" class="primary turboclick">{{icon "plus"}}{{if $isDesktop}} Follow Someone{{end}}</button>

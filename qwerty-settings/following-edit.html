@@ -15,20 +15,20 @@
 			</span>
 		{{- end -}}
 
-		<button hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}" role="tab"><i class="ti ti-person"></i> Profile</button>
-		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-note"></i> Notes</button>
-		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}"><i class="ti ti-rule"></i> Rule</button>
+		<button hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}" role="tab">{{icon "person"}} Profile</button>
+		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "note"}} Notes</button>
+		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}">{{icon "rule"}} Rule</button>
 
 		{{ if $following.IsNew -}}
-			<button aria-selected="true" role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-plus"></i> Follow</button>
+			<button aria-selected="true" role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "plus"}} Follow</button>
 		{{- else -}}
-			<button aria-selected="true" role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Following</button>
+			<button aria-selected="true" role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Following</button>
 		{{- end }}
 
 		{{ if $follower.IsNew -}}
 			<span class="text-light-gray margin-left" disabled>Doesn't Follow You</span>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Follows You</button>
+			<button role="tab" hx-get="/@me/settings/follower?followerId={{$follower.FollowerID.Hex}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Follows You</button>
 		{{- end }}
 	</div>
 </div>
@@ -54,9 +54,9 @@
 			<div class="width-64"></div>
 			<div class="text-green bold margin-top">
 				{{ if eq "ACTIVITYPUB" $following.Method -}}
-					<i class="ti ti-check-badge-fill"></i> Following via ActivityPub
+					{{icon "check-badge-fill"}} Following via ActivityPub
 				{{ else if eq "POLL" $following.Method -}}
-					<i class="ti ti-rss-fill"></i> Following via RSS/Atom
+					{{icon "rss-fill"}} Following via RSS/Atom
 				{{- end -}}
 			</div>
 		</div>

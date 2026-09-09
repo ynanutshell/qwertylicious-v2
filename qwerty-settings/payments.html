@@ -29,7 +29,7 @@
 					</h1>
 				{{- else -}}
 					<div class="flex-row text-xl bold margin-none">
-						<!-- <a href="/@me/settings/mobile"><i class="ti ti-back"></i></a> -->
+						<!-- <a href="/@me/settings/mobile">{{icon "back"}}</a> -->
 						<div class="bold margin-none flex-grow">Payments Not Available</div>
 					</div>
 				{{- end -}}
@@ -46,7 +46,7 @@
 					</h1>
 				{{- else -}}
 					<h1 class="text-xl bold">
-						<a href="/@me/settings/mobile"><i class="ti ti-back"></i></a>
+						<a href="/@me/settings/mobile">{{icon "back"}}</a>
 						Accept Payments for your Posts
 					</h1>
 				{{- end -}}
@@ -56,7 +56,7 @@
 					<br><br>
 					After you've entered your merchant account information, you'll be able to use the product plan(s) from your merchant account to 
 					charge for access to this item.
-					<a href="https://emissary.dev/payments" class="nowrap" target="_blank">Learn More <i class="ti ti-new-window"></i></a>
+					<a href="https://emissary.dev/payments" class="nowrap" target="_blank">Learn More {{icon "new-window"}}</a>
 				</div>
 
 				<div class="md:flex-row margin-bottom md:text-sm">
@@ -70,13 +70,13 @@
 			{{- if $isDesktop -}}
 				<div class="flex-row flex-align-center margin-bottom">
 					<h1 class="text-xl bold margin-none flex-grow">Merchant Accounts</h1>
-					<a href="https://emissary.dev/payments" target="_blank"><i class="ti ti-help"></i> Help</a>
+					<a href="https://emissary.dev/payments" target="_blank">{{icon "help"}} Help</a>
 				</div>
 			{{- else -}}
 				<div class="flex-row flex-align-center text-xl margin-none margin-bottom">
-					<a href="/@me/settings/mobile"><i class="ti ti-back"></i></a>
+					<a href="/@me/settings/mobile">{{icon "back"}}</a>
 					<h1 class="bold flex-grow">Merchant Accounts</h1>
-					<a href="https://emissary.dev/payments" target="_blank"><i class="ti ti-help"></i></a>
+					<a href="https://emissary.dev/payments" target="_blank">{{icon "help"}}</a>
 				</div>
 			{{- end -}}
 				
@@ -104,7 +104,7 @@
 			</div>
 
 			<div hx-get="/@me/settings/remoteProducts" hx-target="this" hx-trigger="load, focus from:window" hx-push-url="false" hx-swap="innerHTML" class="margin-top-xl">
-				<span class="text-gray"><span class="spin"><i class="ti ti-loading"></i></span> Loading Products</span>
+				<span class="text-gray"><span class="spin">{{icon "loading"}}</span> Loading Products</span>
 			</div>
 
 		{{- end -}}

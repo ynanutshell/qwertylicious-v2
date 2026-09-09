@@ -12,7 +12,7 @@
 
 		<div id="menu-bar">
 			<!-- {{ if not $isDesktop }}
-				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true"><i class="ti ti-back"></i></a>
+				<a href="/@me/settings/mobile" class="turboclick tab" hx-boost="true">{{icon "back"}}</a>
 			{{ end }} -->
 			{{ if $isDesktop }}
 				<div class="left tabs">
@@ -24,7 +24,7 @@
 				</div>
 			{{ else }}
 				<div class="dropdown">
-					<a class="button">Circles <i class="ti ti-chevron-down"></i></a>
+					<a class="button">Circles {{icon "chevron-down"}}</a>
 					<div class="dropdown-content left">
 						<a href="/@me/settings/following" class="turboclick dropdown-item" hx-boost="true">Following</a>
 						<a href="/@me/settings/followers" class="turboclick dropdown-item" hx-boost="true">Followers</a>
@@ -36,7 +36,7 @@
 			{{ end }}
 			<div class="right">
 				<a href="https://emissary.dev/circles" target="_blank" class="link">
-					<i class="ti ti-help"></i>
+					{{icon "help"}}
 					{{ if $isDesktop }} Help {{ end }}
 				</a>
 			</div>
@@ -51,7 +51,7 @@
 
 		<table class="table">
 			<tr hx-get="/@me/settings/circle-add" role="button"><td class="link" colspan="5">
-				<span class="margin-right-xs"><i class="ti ti-plus"></i></span>
+				<span class="margin-right-xs">{{icon "plus"}}</span>
 				Add a Circle
 			</td></tr>
 			
@@ -62,12 +62,12 @@
 						{{$circle.Name}}
 					</td>
 					<td hx-get="/@me/settings/circle-members?circleId={{$circle.ID}}" nowrap>
-						<span class="text-light-gray"><i class="ti ti-person-fill"></i></span> 
+						<span class="text-light-gray">{{icon "person-fill"}}</span> 
 						{{$circle.MemberCount}}
 					</td>
 					<td hx-get="/@me/settings/circle-members?circleId={{$circle.ID}}" nowrap>
 						{{- if $circle.HasProducts -}}
-							<span class="text-light-gray"><i class="ti ti-box-fill"></i></span> 
+							<span class="text-light-gray">{{icon "box-fill"}}</span> 
 							{{$circle.ProductCount -}}
 						{{- end -}}
 					</td>

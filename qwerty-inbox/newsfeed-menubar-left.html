@@ -20,7 +20,7 @@
 		{{else}}
 		All 
 		{{- end -}}
-		<i class="ti ti-chevron-down margin-left-xs"></i>
+		{{icon "chevron-down margin-left-xs"}}
 	</a>
 	<form class="dropdown-content left sortable" hx-post="/@me/newsfeed/folder-sort" hx-push-url="false" hx-trigger="end" hx-swap="none">
 		<a href="/@me/newsfeed/feed" class="dropdown-item turboclick {{if $allFolders}}selected{{end}}">
@@ -36,14 +36,14 @@
 						class="text-sm text-light-gray hover-hide">&#9679;</span>
 					{{- end -}}
 					<span class="hover-show">
-						<i class="ti ti-drag-handle"></i>
+						{{icon "drag-handle"}}
 					</span>
 				</span>
 				<input type="hidden" name="keys" value="{{$folderID}}">
 			</a>
 		{{- end -}}
 		<a hx-get="/@me/newsfeed/folder-add" class="dropdown-item turboclick">
-			<span><i class="ti ti-plus"></i> New Folder</span>
+			<span>{{icon "plus"}} New Folder</span>
 		</a>
 	</form>
 </div>

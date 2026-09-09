@@ -1,12 +1,12 @@
 {{- $actorID := .Object.Data.actor -}}
 {{- $actorDomain  := domainOnly $actorID -}}
 
-<h1><i class="ti ti-alert"></i> Close and Move My Account</h1>
+<h1>{{icon "alert"}} Close and Move My Account</h1>
 
 <div class="margin-bottom">
 	This action will permanently close your account on this server, 
 	and move your profile to <b>{{$actorDomain}}</b>.
-	<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More <i class="ti ti-link-outbound"></i></a>
+	<a href="https://emissary.dev/migration" target="_blank" class="nowrap">Learn More {{icon "link-outbound"}}</a>
 </div>
 
 <div class="margin-bottom">By continuing, I understand that:</div>

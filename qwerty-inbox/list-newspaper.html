@@ -16,11 +16,11 @@
 
 		{{- if eq "NEW-REPLIES" $message.StateID -}}
 			<div class="bold italics text-green text-sm">
-				<i class="ti ti-chat-fill"></i> New Replies
+				{{icon "chat-fill"}} New Replies
 			</div>
 		{{- else if eq "MUTED" $message.StateID -}}
 			<div class="bold italics text-gray text-sm">
-				<i class="ti ti-mute"></i> Notifications Muted
+				{{icon "mute"}} Notifications Muted
 			</div>
 		{{- end -}}
 

@@ -29,7 +29,7 @@
 					{{- if ne "" $iconURL -}}
 						<img src="{{$iconURL}}" alt="" class="circle width-24 flex-shrink-0">
 					{{- else -}}
-						<div class="circle width-24 flex-center flex-shrink-0"><i class="ti ti-person"></i></div>
+						<div class="circle width-24 flex-center flex-shrink-0">{{icon "person"}}</div>
 					{{- end -}}
 					<div class="flex-grow nowrap text-light-gray ellipsis">
 						<b class="text-nocolor">{{ $attributedTo.Name }}</b>
@@ -44,11 +44,11 @@
 			<div class="card padding margin-bottom pos-relative">
 
 				<div class="ToggleHide clickable flex-row flex-align-center margin-bottom-lg">
-					<div><i class="ti ti-remove-square"></i></div>
+					<div>{{icon "remove-square"}}</div>
 					{{- if ne "" $iconURL -}}
 						<img src="{{$iconURL}}" alt="" class="circle width-24 flex-shrink-0">
 					{{- else -}}
-						<div class="circle width-24 flex-center flex-shrink-0"><i class="ti ti-person"></i></div>
+						<div class="circle width-24 flex-center flex-shrink-0">{{icon "person"}}</div>
 					{{- end -}}
 					<div class="flex-grow nowrap">
 						<b>{{ $attributedTo.Name }}</b>
@@ -84,11 +84,11 @@
 					</div>
 
 					<div class="pos-absolute-top-right text-sm" hx-target="#modal-window" hx-push-url="false" hx-swap="innerHTML">
-						<button hx-get="/@me/newsfeed/browse-tree?url={{$documentID}}" title="Focus on this post" aria-label="Focus on this post"><i class="ti ti-focus"></i></button>
-						<button hx-get="/@me/newsfeed/browse-index?url={{$documentID}}" title="Use Index Layout" aria-label="Use Index Layout"><i class="ti ti-list"></i></button>
+						<button hx-get="/@me/newsfeed/browse-tree?url={{$documentID}}" title="Focus on this post" aria-label="Focus on this post">{{icon "focus"}}</button>
+						<button hx-get="/@me/newsfeed/browse-index?url={{$documentID}}" title="Use Index Layout" aria-label="Use Index Layout">{{icon "list"}}</button>
 						<span class="margin-horizontal-sm"></span>
-						<button hx-get="/@me/newsfeed/browse-actor?url={{$attributedTo.ID}}" title="View Profile" aria-label="View Profile"><i class="ti ti-person"></i></button>
-						<a href="{{$documentID}}" target="_blank" class="button" title="View Original Website" aria-label="Visit Original Website"><i class="ti ti-globe"></i></a>
+						<button hx-get="/@me/newsfeed/browse-actor?url={{$attributedTo.ID}}" title="View Profile" aria-label="View Profile">{{icon "person"}}</button>
+						<a href="{{$documentID}}" target="_blank" class="button" title="View Original Website" aria-label="Visit Original Website">{{icon "globe"}}</a>
 					</div>
 
 				</div>
@@ -151,7 +151,7 @@
 		<div class="flex-row">
 		<div class="flex-grow margin-none text-light-gray">Could Not Load Message</div>
 		<div>
-			<a href="{{$url}}" class="button text-xs margin-none" target="_blank"><i class="ti ti-globe"></i></a>
+			<a href="{{$url}}" class="button text-xs margin-none" target="_blank">{{icon "globe"}}</a>
 		</div>
 	</div>
 

@@ -6,7 +6,7 @@
 
 	{{- if isZero $bannerURL -}}
 		<div class="align-center">
-			<i class="ti ti-photo text-lg margin-none"></i>
+			{{icon "photo text-lg margin-none"}}
 			<div class="text-lg bold margin-none">Banner</div>
 			<div class="align-center text-sm">
 				Click here to <u>upload an image or video</u><br>
@@ -39,7 +39,7 @@
 	</form>
 
 	{{- if notZero $bannerURL -}}
-		<button hx-get="/{{.StreamID}}/delete-banner" class="pos-absolute-top-right button icon"><i class="ti ti-trash" ></i></button>
+		<button hx-get="/{{.StreamID}}/delete-banner" class="pos-absolute-top-right button icon">{{icon "trash"}}</button>
 	{{- end -}}
 
 </div>

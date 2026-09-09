@@ -16,12 +16,12 @@
 	<div>	
 		{{- if ne "" $identity.EmailAddress -}}
 			{{- if ne $identity.Name $identity.EmailAddress -}}
-				<div class="text-gray"><i class="ti ti-email"></i> {{$identity.EmailAddress}}</div>
+				<div class="text-gray">{{icon "email"}} {{$identity.EmailAddress}}</div>
 			{{- end -}}
 		{{- end -}}
 		{{- if $identity.HasWebfingerUsername -}}
 			{{- if ne $identity.Name $identity.WebfingerUsername -}}
-				<div class="text-gray"><i class="ti ti-globe"></i> <a href="{{$identity.ActivityPubActor}}" target="_blank">{{$identity.WebfingerUsername}} &rarr;</a></div>
+				<div class="text-gray">{{icon "globe"}} <a href="{{$identity.ActivityPubActor}}" target="_blank">{{$identity.WebfingerUsername}} &rarr;</a></div>
 			{{- end -}}
 		{{- end -}}
 

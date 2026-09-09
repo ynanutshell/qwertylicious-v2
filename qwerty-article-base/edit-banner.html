@@ -38,7 +38,7 @@
 	</form>
 
 	{{- if notZero $bannerURL -}}
-		<button hx-get="/{{.StreamID}}/delete-banner" class="text-xs"><i class="ti ti-trash"></i></button>
+		<button hx-get="/{{.StreamID}}/delete-banner" class="text-xs">{{icon "trash"}}</button>
 	{{- end -}}
 
 </div>

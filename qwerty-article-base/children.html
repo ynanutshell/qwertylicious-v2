@@ -5,7 +5,7 @@
 	<div id="menu-bar">
 		
 		<div class="left">
-			<button class="button tertiary" script="on click saveDraft(false)"><span class="icon margin-right-xs"><i class="ti ti-chevron-left"></i></span><span>Back</span></button>
+			<button class="button tertiary" script="on click saveDraft(false)"><span class="icon margin-right-xs">{{icon "chevron-left"}}</span><span>Back</span></button>
 		</div>
 
 		<div class="center dropdown">
@@ -35,10 +35,10 @@
 
 		<div class="right">
 			<div class="dropdown">
-				<a class="button icon"><i class="ti ti-dots"></i></a>
+				<a class="button icon">{{icon "dots"}}</a>
 				{{- if .UserCan "delete" -}}
 					<div class="dropdown-content">
-						<a hx-get="/{{.StreamID}}/delete" class="dropdown-item text-red"><i class="ti ti-trash"></i> Delete</a>
+						<a hx-get="/{{.StreamID}}/delete" class="dropdown-item text-red">{{icon "trash"}} Delete</a>
 					</div>
 				{{- end -}}
 			</div>

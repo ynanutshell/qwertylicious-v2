@@ -34,17 +34,17 @@
 					<span class="clipboard-text" hidden>@{{.Username}}@{{.Hostname}}</span>
 					<span class="clickable clipboard-copy-button">
 						<span>@{{.Username}}</span>
-						<span class="text-xs"><i class="ti ti-copy"></i></span>
+						<span class="text-xs">{{icon "copy"}}</span>
 					</span>
 					<span class="clipboard-copy-feedback" style="display:none;">
 						<span>@{{.Username}}</span>
-						<span class="text-xs text-green"><i class="ti ti-check"></i> Copied to clipboard</span>
+						<span class="text-xs text-green">{{icon "check"}} Copied to clipboard</span>
 					</span>
 				</div>
 
 				<div class="text-gray nowrap">
 					{{- if ne "" .Location }}
-						<span id="profile-location"> <i class="ti ti-map-pin"></i> {{.Location}}</span>
+						<span id="profile-location"> {{icon "map-pin"}} {{.Location}}</span>
 					{{- end -}}
 
 					{{- if .Links.NotEmpty -}}
@@ -63,26 +63,26 @@
 
 			<div class="nowrap" script="on load trigger storage on window">
 				<div class="flex-row margin-none">
-					<button hx-post="/@{{.UserID}}/add" class="action{{if $isMobile}} icon{{end}}"><i class="ti ti-plus"></i>{{if $isDesktop}} New Post{{end}}</button>
+					<button hx-post="/@{{.UserID}}/add" class="action{{if $isMobile}} icon{{end}}">{{icon "plus"}}{{if $isDesktop}} New Post{{end}}</button>
 					{{- if $isMyself -}}
 						<div class="dropdown">
-							<a class="button icon"><i class="ti ti-dots"></i></a>
+							<a class="button icon">{{icon "dots"}}</a>
 							<div class="dropdown-content fixed" style="{{if $isMobile}}right: calc(var(--rhythm) * 4){{end}}">
 								<button class="dropdown-item" hx-get="/@me/edit-layout">
 									{{- if eq $layout "column-1" -}}
-										<i class="ti ti-columns-1"></i> 1 Column Layout
+										{{icon "columns-1"}} 1 Column Layout
 									{{- else if eq $layout "column-2" -}}
-										<i class="ti ti-columns-2"></i> 2 Columns Layout
+										{{icon "columns-2"}} 2 Columns Layout
 									{{- else if eq $layout "column-3" -}}
-										<i class="ti ti-columns-3"></i> 3 Columns Layout
+										{{icon "columns-3"}} 3 Columns Layout
 									{{- else if eq $layout "row-reverse" -}}
-										<i class="ti ti-layout-rows"></i> Rows Reversed Layout
+										{{icon "layout-rows"}} Rows Reversed Layout
 									{{- else -}}
-										<i class="ti ti-layout-rows"></i> Rows Layout
+										{{icon "layout-rows"}} Rows Layout
 									{{- end -}}
 								</button>
-								<button class="dropdown-item" hx-get="/@me/settings"><i class="ti ti-settings"></i> Edit Profile</button>
-								<button class="dropdown-item text-red" hx-post="/signout"><i class="ti ti-logout"></i> Sign Out</button>
+								<button class="dropdown-item" hx-get="/@me/settings">{{icon "settings"}} Edit Profile</button>
+								<button class="dropdown-item text-red" hx-post="/signout">{{icon "logout"}} Sign Out</button>
 							</div>
 						</div>
 					{{- else -}}
@@ -91,9 +91,9 @@
 						{{- if .IsAuthenticated -}}
 							{{- $following := .AmFollowing .Permalink -}}
 							{{- if $following.IsNew -}}
-								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary"><i class="ti ti-fediverse"></i> Follow for Updates</button>
+								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary">{{icon "fediverse"}} Follow for Updates</button>
 							{{- else -}}
-								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary"><i class="ti ti-check"></i> Following</button>
+								<button hx-get="/@me/settings/following-edit?url={{.Permalink}}" class="primary">{{icon "check"}} Following</button>
 							{{- end -}}
 						{{- else -}}
 						{{- end -}}

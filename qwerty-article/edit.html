@@ -1,7 +1,7 @@
 <div class="page framed editor-none h-entry">
 	<div id="menu-bar">
 		<div class="left">
-			<button class="tertiary" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-chevron-left margin-right-xs"></i><span>Back</span></button>
+			<button class="tertiary" hx-get="/{{.StreamID}}/discard-draft">{{icon "chevron-left margin-right-xs"}}<span>Back</span></button>
 		</div>
 		
 		<div class="center">
@@ -10,17 +10,17 @@
 
 		<div class="right">
 			{{- if eq .StateID "published" -}}
-				<button hx-get="/{{.StreamID}}/unpublish" class="button success"><i class="ti ti-check"></i> Published</button>
+				<button hx-get="/{{.StreamID}}/unpublish" class="button success">{{icon "check"}} Published</button>
 			{{- else -}}
 				<button hx-on:click="publish()" class="button action">Publish</button>
 			{{- end -}}
 			<div class="dropdown">
-				<a class="button icon margin-left-xs"><i class="ti ti-dots"></i></a>
+				<a class="button icon margin-left-xs">{{icon "dots"}}</a>
 				<div class="dropdown-content">
-					<button class="dropdown-item" hx-on:click="save()"><i class="ti ti-device-floppy"></i> Save</button>
-					<button class="dropdown-item" hx-get="/{{.StreamID}}/discard-draft"><i class="ti ti-x"></i> Discard</button>
+					<button class="dropdown-item" hx-on:click="save()">{{icon "device-floppy"}} Save</button>
+					<button class="dropdown-item" hx-get="/{{.StreamID}}/discard-draft">{{icon "x"}} Discard</button>
 					{{- if .UserCan "delete" -}}
-						<a class="button dropdown-item text-red" hx-get="/{{.StreamID}}/delete"><i class="ti ti-trash"></i> Delete</a>
+						<a class="button dropdown-item text-red" hx-get="/{{.StreamID}}/delete">{{icon "trash"}} Delete</a>
 					{{- end -}}
 				</div>
 			</div>
@@ -52,9 +52,9 @@
 	<div class="card padding border flex-row flex-align-center flex-justify-between">
 		<span class="medium margin-none">Visibility</span>
 		{{- if .Products.NotEmpty -}}
-			<a class="button" hx-get="/{{.StreamID}}/sharing"><i class="ti ti-lock"></i> Restricted</a>
+			<a class="button" hx-get="/{{.StreamID}}/sharing">{{icon "lock"}} Restricted</a>
 		{{- else -}}
-			<a class="button" hx-get="/{{.StreamID}}/sharing"><i class="ti ti-world"></i> Public</a>
+			<a class="button" hx-get="/{{.StreamID}}/sharing">{{icon "world"}} Public</a>
 		{{- end -}}
 	</div>
 

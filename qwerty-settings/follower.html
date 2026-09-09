@@ -13,17 +13,17 @@
 			</span>
 		{{- end -}}
 
-		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-person"></i> Profile</button>
-		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-note"></i> Notes</button>
-		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}"><i class="ti ti-rule"></i> Rule</button>
+		<button role="tab" hx-get="/@me/newsfeed/browse-actor?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "person"}} Profile</button>
+		<button role="tab" hx-get="/@me/newsfeed/annotation?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "note"}} Notes</button>
+		<button role="tab" hx-get="/@me/settings/actor-rule?actor={{$actor.ID}}">{{icon "rule"}} Rule</button>
 
 		{{ if $following.IsNew -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-plus"></i> Follow</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "plus"}} Follow</button>
 		{{- else -}}
-			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}"><i class="ti ti-check"></i> Following</button>
+			<button role="tab" hx-get="/@me/settings/following-edit?url={{$actor.ID}}&search={{$search}}&folderId={{$folderID}}">{{icon "check"}} Following</button>
 		{{- end }}
 
-		<button role="tab" aria-selected="true"><i class="ti ti-check"></i> Follows You</button>
+		<button role="tab" aria-selected="true">{{icon "check"}} Follows You</button>
 	</div>
 </div>
 
@@ -46,7 +46,7 @@
 	<div class="flex-row margin-bottom-lg">
 		<div class="width-64"></div>
 		<div class="text-green bold margin-top">
-			<i class="ti ti-check-badge-fill"></i> Follows You via ActivityPub
+			{{icon "check-badge-fill"}} Follows You via ActivityPub
 		</div>
 	</div>
 
